@@ -53,6 +53,7 @@ const Index = () => {
       <DestinationsSection />
       <ActivitiesSection />
       <ToursWidget />
+      <HotelSearchWidget />
       <BlogSection />
       <MountainGuide />
       <Footer />
