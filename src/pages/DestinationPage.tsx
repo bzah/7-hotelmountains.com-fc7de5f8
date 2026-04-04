@@ -3,6 +3,7 @@ import { useParams, Navigate, Link } from "react-router-dom";
 import { destinations } from "@/data/destinations";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import HotelSearchWidget from "@/components/HotelSearchWidget";
 import { MapPin, Calendar, ArrowLeft, ExternalLink, Mountain, Star } from "lucide-react";
 
 const DestinationToursWidget = ({ query }: { query: string }) => {
@@ -170,6 +171,13 @@ const DestinationPage = () => {
           </div>
         </div>
 
+        {/* Hotel Search */}
+        <div className="mb-14">
+          <h2 className="font-heading text-2xl font-bold text-foreground mb-5">
+            {destination.name} Hotels & Accommodation
+          </h2>
+          <HotelSearchWidget defaultDestination={destination.name} compact />
+        </div>
         {/* Top Activities links */}
         <h2 className="font-heading text-2xl font-bold text-foreground mb-5">
           Top {destination.name} Activities

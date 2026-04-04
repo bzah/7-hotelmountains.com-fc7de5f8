@@ -7,6 +7,7 @@ const navLinks = [
   { label: "Destinations", href: "#destinations" },
   { label: "Activities", href: "#activities" },
   { label: "Tours", href: "#tours" },
+  { label: "Hotels", href: "#hotels" },
   { label: "Blog", href: "/blog", isRoute: true },
   { label: "Travel Guide", href: "#guide" },
 ];

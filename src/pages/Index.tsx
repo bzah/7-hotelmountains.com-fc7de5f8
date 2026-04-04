@@ -3,6 +3,7 @@ import HeroSection from "@/components/HeroSection";
 import DestinationsSection from "@/components/DestinationsSection";
 import ActivitiesSection from "@/components/ActivitiesSection";
 import ToursWidget from "@/components/ToursWidget";
+import HotelSearchWidget from "@/components/HotelSearchWidget";
 import MountainGuide from "@/components/MountainGuide";
 import BlogSection from "@/components/BlogSection";
 import Footer from "@/components/Footer";
@@ -52,6 +53,7 @@ const Index = () => {
       <DestinationsSection />
       <ActivitiesSection />
       <ToursWidget />
+      <HotelSearchWidget />
       <BlogSection />
       <MountainGuide />
       <Footer />
