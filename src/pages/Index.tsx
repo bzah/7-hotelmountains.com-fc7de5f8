@@ -54,6 +54,7 @@ const Index = () => {
       <DestinationsSection />
       <ActivitiesSection />
       <ToursWidget />
+      <FlightSearchWidget />
       <HotelSearchWidget />
       <BlogSection />
       <MountainGuide />
