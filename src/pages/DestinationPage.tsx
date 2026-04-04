@@ -3,6 +3,7 @@ import { useParams, Navigate, Link } from "react-router-dom";
 import { destinations } from "@/data/destinations";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import HotelSearchWidget from "@/components/HotelSearchWidget";
 import { MapPin, Calendar, ArrowLeft, ExternalLink, Mountain, Star } from "lucide-react";
 
 const DestinationToursWidget = ({ query }: { query: string }) => {
