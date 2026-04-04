@@ -4,6 +4,7 @@ import DestinationsSection from "@/components/DestinationsSection";
 import ActivitiesSection from "@/components/ActivitiesSection";
 import ToursWidget from "@/components/ToursWidget";
 import HotelSearchWidget from "@/components/HotelSearchWidget";
+import FlightSearchWidget from "@/components/FlightSearchWidget";
 import MountainGuide from "@/components/MountainGuide";
 import BlogSection from "@/components/BlogSection";
 import Footer from "@/components/Footer";
