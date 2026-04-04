@@ -112,6 +112,12 @@ export const destinations: Destination[] = [
       { name: "Banff & Lake Louise Tours", link: `${GYG_BASE}/banff-l981/?${PARTNER}` },
       { name: "Yellowstone Day Trips", link: `${GYG_BASE}/yellowstone-national-park-l3518/?${PARTNER}` },
       { name: "Colorado Skiing", link: `${GYG_BASE}/colorado-l918/?${PARTNER}` },
+    ],
+    faq: [
+      { question: "What is the tallest mountain in the Rocky Mountains?", answer: "Mount Elbert in Colorado at 14,440 feet (4,401m) is the highest peak in the Rocky Mountains and the second-highest in the contiguous United States." },
+      { question: "When is the best time to visit Rocky Mountain National Park?", answer: "June to September for hiking and wildlife. September-October offers fall colors and elk bugling with fewer crowds. December to April is best for skiing." },
+      { question: "Do I need a reservation for Rocky Mountain National Park?", answer: "Yes, a timed-entry reservation is required during peak months (May through October). Book as soon as they become available — they sell out quickly. The park entrance fee is $30 per vehicle." },
+      { question: "What wildlife can I see in the Rocky Mountains?", answer: "Grizzly bears, elk, moose, bighorn sheep, wolves, mountain lions, and bison roam throughout the Rocky Mountain ecosystem. Elk are most visible during the September-October rutting season." },
     ]
   },
   {
