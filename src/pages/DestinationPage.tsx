@@ -54,6 +54,7 @@ const DestinationPage = () => {
       }
       window.scrollTo(0, 0);
 
+      // TouristDestination schema
       const script = document.createElement("script");
       script.type = "application/ld+json";
       script.textContent = JSON.stringify({
@@ -66,8 +67,27 @@ const DestinationPage = () => {
         geo: { "@type": "GeoCoordinates" },
       });
       document.head.appendChild(script);
+
+      // FAQPage schema
+      const faqScript = document.createElement("script");
+      faqScript.type = "application/ld+json";
+      faqScript.textContent = JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: destination.faq.map((f) => ({
+          "@type": "Question",
+          name: f.question,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: f.answer,
+          },
+        })),
+      });
+      document.head.appendChild(faqScript);
+
       return () => {
         document.head.removeChild(script);
+        document.head.removeChild(faqScript);
       };
     }
   }, [destination]);
