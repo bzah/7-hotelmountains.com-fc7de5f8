@@ -312,6 +312,12 @@ export const destinations: Destination[] = [
       { name: "Kamikochi Day Trips", link: `${GYG_BASE}/s/?q=kamikochi&${PARTNER}` },
       { name: "Tateyama Alpine Route", link: `${GYG_BASE}/s/?q=tateyama+alpine+route&${PARTNER}` },
       { name: "Hakuba Ski & Snowboard", link: `${GYG_BASE}/s/?q=hakuba&${PARTNER}` },
+    ],
+    faq: [
+      { question: "When is the best time to visit the Japanese Alps?", answer: "Late July to October for hiking with peak autumn color in mid-October. January to March for skiing. Late April to June for the Tateyama snow corridor." },
+      { question: "How do I get to the Japanese Alps from Tokyo?", answer: "Take the Shinkansen from Tokyo to Nagano (80 minutes) or a limited express to Matsumoto (2.5 hours). The Japan Rail Pass covers both routes." },
+      { question: "Can I visit Shirakawa-go as a day trip?", answer: "Yes, Shirakawa-go can be visited as a day trip from Takayama (50 minutes by bus) or Kanazawa (75 minutes). However, staying overnight in a traditional farmhouse is highly recommended." },
+      { question: "What are mountain huts like in Japan?", answer: "Japanese mountain huts (yamagoya) serve hot meals, provide futon bedding, and cost ¥8,000-12,000/night with dinner and breakfast. Book ahead for weekends and peak season." },
     ]
   }
 ];
