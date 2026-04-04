@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Search, Calendar, Users, BedDouble } from "lucide-react";
 
-// Replace with your Booking.com Affiliate ID
-const BOOKING_AID = "304142";
+// Travelpayouts Affiliate Marker ID
+const TP_MARKER = "714761";
 
 const popularDestinations = [
   { label: "Swiss Alps, Switzerland", query: "Swiss Alps" },
