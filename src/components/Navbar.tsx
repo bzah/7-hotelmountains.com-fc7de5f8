@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { Menu, X, Mountain } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const navLinks = [
   { label: "Home", href: "#" },
   { label: "Destinations", href: "#destinations" },
   { label: "Activities", href: "#activities" },
   { label: "Tours", href: "#tours" },
+  { label: "Blog", href: "/blog", isRoute: true },
   { label: "Travel Guide", href: "#guide" },
 ];
 
