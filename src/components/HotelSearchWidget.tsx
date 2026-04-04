@@ -38,7 +38,7 @@ const HotelSearchWidget = ({ defaultDestination = "", compact = false }: HotelSe
 
   const handleSearch = () => {
     const query = encodeURIComponent(destination || "mountain hotel");
-    const url = `https://www.booking.com/searchresults.html?aid=${BOOKING_AID}&ss=${query}&checkin=${checkIn}&checkout=${checkOut}&group_adults=${guests}&no_rooms=1&group_children=0`;
+    const url = `https://search.hotellook.com/hotels?marker=${TP_MARKER}&destination=${query}&checkIn=${checkIn}&checkOut=${checkOut}&adults=${guests}`;
     window.open(url, "_blank", "noopener,noreferrer");
   };
 
