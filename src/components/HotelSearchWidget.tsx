@@ -180,7 +180,7 @@ const HotelSearchWidget = ({ defaultDestination = "", compact = false }: HotelSe
           </div>
 
           <p className="text-[11px] text-muted-foreground mt-4 text-center">
-            Hotel search powered by Booking.com — We may earn a commission at no extra cost to you.
+            Hotel search powered by Hotellook — We may earn a commission at no extra cost to you.
           </p>
         </div>
 
