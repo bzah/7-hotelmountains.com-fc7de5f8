@@ -13,6 +13,7 @@ export interface Destination {
   sections: { heading: string; content: string[] }[];
   bestTimeToVisit: string;
   topActivities: { name: string; link: string }[];
+  faq: { question: string; answer: string }[];
 }
 
 const GYG_BASE = "https://www.getyourguide.com";
@@ -61,6 +62,12 @@ export const destinations: Destination[] = [
       { name: "Zermatt Glacier Paradise", link: `${GYG_BASE}/zermatt-l959/?${PARTNER}` },
       { name: "Bernina Express", link: `${GYG_BASE}/bernina-express-l97295/?${PARTNER}` },
       { name: "Grindelwald First Cliff Walk", link: `${GYG_BASE}/grindelwald-l1085/?${PARTNER}` },
+    ],
+    faq: [
+      { question: "What is the best time to visit the Swiss Alps?", answer: "June to September is ideal for hiking with peak wildflowers in July. December to April is best for skiing. September offers fewer crowds and golden larch forests." },
+      { question: "How much does a trip to the Swiss Alps cost?", answer: "Budget CHF 100-150 per day for moderate travel. Mid-range hotels average CHF 150-200/night. The Swiss Travel Pass (from CHF 232 for 3 days) covers trains, buses, and boats." },
+      { question: "Do I need a visa to visit Switzerland?", answer: "US, UK, EU, Canadian, and Australian citizens can visit Switzerland visa-free for up to 90 days. Check with your embassy for other nationalities." },
+      { question: "What are the must-see places in the Swiss Alps?", answer: "The Jungfrau Region (Interlaken, Grindelwald, Lauterbrunnen), Zermatt and the Matterhorn, Engadin Valley (St. Moritz), and the Bernese Oberland are the top destinations." },
     ]
   },
   {
@@ -105,6 +112,12 @@ export const destinations: Destination[] = [
       { name: "Banff & Lake Louise Tours", link: `${GYG_BASE}/banff-l981/?${PARTNER}` },
       { name: "Yellowstone Day Trips", link: `${GYG_BASE}/yellowstone-national-park-l3518/?${PARTNER}` },
       { name: "Colorado Skiing", link: `${GYG_BASE}/colorado-l918/?${PARTNER}` },
+    ],
+    faq: [
+      { question: "What is the tallest mountain in the Rocky Mountains?", answer: "Mount Elbert in Colorado at 14,440 feet (4,401m) is the highest peak in the Rocky Mountains and the second-highest in the contiguous United States." },
+      { question: "When is the best time to visit Rocky Mountain National Park?", answer: "June to September for hiking and wildlife. September-October offers fall colors and elk bugling with fewer crowds. December to April is best for skiing." },
+      { question: "Do I need a reservation for Rocky Mountain National Park?", answer: "Yes, a timed-entry reservation is required during peak months (May through October). Book as soon as they become available — they sell out quickly. The park entrance fee is $30 per vehicle." },
+      { question: "What wildlife can I see in the Rocky Mountains?", answer: "Grizzly bears, elk, moose, bighorn sheep, wolves, mountain lions, and bison roam throughout the Rocky Mountain ecosystem. Elk are most visible during the September-October rutting season." },
     ]
   },
   {
@@ -149,6 +162,12 @@ export const destinations: Destination[] = [
       { name: "Blue Ridge Parkway Tours", link: `${GYG_BASE}/asheville-l30277/?${PARTNER}` },
       { name: "Shenandoah Hiking", link: `${GYG_BASE}/shenandoah-national-park-l97278/?${PARTNER}` },
       { name: "Appalachian Trail Experiences", link: `${GYG_BASE}/s/?q=appalachian+trail&${PARTNER}` },
+    ],
+    faq: [
+      { question: "How long is the Appalachian Trail?", answer: "The Appalachian Trail is 2,190 miles (3,524 km) long, stretching from Springer Mountain in Georgia to Mount Katahdin in Maine through 14 states." },
+      { question: "What is the best section of the Appalachian Trail for beginners?", answer: "Shenandoah National Park in Virginia is the best beginner section with well-maintained trails, moderate terrain, and shelters every 8-10 miles." },
+      { question: "When is peak fall foliage in the Appalachian Mountains?", answer: "Peak fall foliage occurs from late September in New England to early November in the southern Appalachians. October is generally the best month for autumn colors." },
+      { question: "Is there an entrance fee for the Great Smoky Mountains?", answer: "No, the Great Smoky Mountains National Park has no entrance fee, making it America's most visited national park with over 12 million visitors annually." },
     ]
   },
   {
@@ -193,6 +212,12 @@ export const destinations: Destination[] = [
       { name: "Annapurna Region Tours", link: `${GYG_BASE}/s/?q=annapurna&${PARTNER}` },
       { name: "Kathmandu Day Tours", link: `${GYG_BASE}/kathmandu-l2593/?${PARTNER}` },
       { name: "Nepal Adventure Packages", link: `${GYG_BASE}/nepal-l293/?${PARTNER}` },
+    ],
+    faq: [
+      { question: "How much does it cost to trek in Nepal?", answer: "Budget $30-50 per day for tea house accommodation and meals. Permits cost $20-50. A guide costs $25-35/day and a porter $15-20/day." },
+      { question: "Do I need a guide for trekking in the Himalayas?", answer: "Guides are highly recommended for first-timers and mandatory in some regions like Manaslu. They handle logistics, navigation, and altitude sickness monitoring." },
+      { question: "What is the best trek for beginners in Nepal?", answer: "The Langtang Valley Trek (7-10 days) is the best option for beginners — it's close to Kathmandu, less crowded, and lower altitude than Everest Base Camp." },
+      { question: "When is the best time to trek in the Himalayas?", answer: "October-November offers the best visibility and stable weather. March-May is the second-best season with warmer temperatures and blooming rhododendrons." },
     ]
   },
   {
@@ -237,6 +262,12 @@ export const destinations: Destination[] = [
       { name: "Cusco Day Trips", link: `${GYG_BASE}/cusco-l432/?${PARTNER}` },
       { name: "Patagonia Adventures", link: `${GYG_BASE}/s/?q=patagonia&${PARTNER}` },
       { name: "Sacred Valley Tours", link: `${GYG_BASE}/sacred-valley-l97282/?${PARTNER}` },
+    ],
+    faq: [
+      { question: "How far in advance should I book the Inca Trail?", answer: "Book Inca Trail permits 4-6 months ahead — only 500 people (including guides and porters) are allowed per day. Popular dates sell out quickly." },
+      { question: "What is the altitude of Machu Picchu?", answer: "Machu Picchu sits at 2,430 meters (7,972 feet). Cusco, the gateway city, is higher at 3,400 meters. Spend 2-3 days acclimatizing in Cusco before heading to Machu Picchu." },
+      { question: "What is the best time to visit Patagonia?", answer: "November to March (austral summer) is the best time to visit Patagonia. January and February have the longest days but also the most wind and tourists." },
+      { question: "Is it safe to travel in the Andes?", answer: "Yes, popular trekking destinations in Peru, Chile, and Argentina are safe for tourists. Take normal precautions, acclimatize properly to altitude, and use registered guides for remote treks." },
     ]
   },
   {
@@ -281,6 +312,12 @@ export const destinations: Destination[] = [
       { name: "Kamikochi Day Trips", link: `${GYG_BASE}/s/?q=kamikochi&${PARTNER}` },
       { name: "Tateyama Alpine Route", link: `${GYG_BASE}/s/?q=tateyama+alpine+route&${PARTNER}` },
       { name: "Hakuba Ski & Snowboard", link: `${GYG_BASE}/s/?q=hakuba&${PARTNER}` },
+    ],
+    faq: [
+      { question: "When is the best time to visit the Japanese Alps?", answer: "Late July to October for hiking with peak autumn color in mid-October. January to March for skiing. Late April to June for the Tateyama snow corridor." },
+      { question: "How do I get to the Japanese Alps from Tokyo?", answer: "Take the Shinkansen from Tokyo to Nagano (80 minutes) or a limited express to Matsumoto (2.5 hours). The Japan Rail Pass covers both routes." },
+      { question: "Can I visit Shirakawa-go as a day trip?", answer: "Yes, Shirakawa-go can be visited as a day trip from Takayama (50 minutes by bus) or Kanazawa (75 minutes). However, staying overnight in a traditional farmhouse is highly recommended." },
+      { question: "What are mountain huts like in Japan?", answer: "Japanese mountain huts (yamagoya) serve hot meals, provide futon bedding, and cost ¥8,000-12,000/night with dinner and breakfast. Book ahead for weekends and peak season." },
     ]
   }
 ];
