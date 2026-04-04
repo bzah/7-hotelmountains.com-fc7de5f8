@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Search, Calendar, Users, BedDouble } from "lucide-react";
 
-// Replace with your Booking.com Affiliate ID
-const BOOKING_AID = "304142";
+// Travelpayouts Affiliate Marker ID
+const TP_MARKER = "714761";
 
 const popularDestinations = [
   { label: "Swiss Alps, Switzerland", query: "Swiss Alps" },
@@ -38,7 +38,7 @@ const HotelSearchWidget = ({ defaultDestination = "", compact = false }: HotelSe
 
   const handleSearch = () => {
     const query = encodeURIComponent(destination || "mountain hotel");
-    const url = `https://www.booking.com/searchresults.html?aid=${BOOKING_AID}&ss=${query}&checkin=${checkIn}&checkout=${checkOut}&group_adults=${guests}&no_rooms=1&group_children=0`;
+    const url = `https://search.hotellook.com/hotels?marker=${TP_MARKER}&destination=${query}&checkIn=${checkIn}&checkOut=${checkOut}&adults=${guests}`;
     window.open(url, "_blank", "noopener,noreferrer");
   };
 
@@ -80,7 +80,7 @@ const HotelSearchWidget = ({ defaultDestination = "", compact = false }: HotelSe
           </button>
         </div>
         <p className="text-[10px] text-muted-foreground mt-3 text-center">
-          Powered by Booking.com
+          Powered by Hotellook
         </p>
       </div>
     );
@@ -180,7 +180,7 @@ const HotelSearchWidget = ({ defaultDestination = "", compact = false }: HotelSe
           </div>
 
           <p className="text-[11px] text-muted-foreground mt-4 text-center">
-            Hotel search powered by Booking.com — We may earn a commission at no extra cost to you.
+            Hotel search powered by Hotellook — We may earn a commission at no extra cost to you.
           </p>
         </div>
 
