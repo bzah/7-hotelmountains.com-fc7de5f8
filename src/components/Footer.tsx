@@ -1,4 +1,5 @@
 import { Mountain } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const PARTNER = "partner_id=0IQTGX8&utm_medium=online_publisher";
 
@@ -23,27 +24,48 @@ const Footer = () => {
           <div>
             <h4 className="font-heading font-bold text-background mb-4">Destinations</h4>
             <ul className="space-y-2 text-sm">
-              {["Swiss Alps", "Rocky Mountains", "Appalachian Mountains", "Himalayas", "Andes", "Japanese Alps"].map(
-                (dest) => (
-                  <li key={dest}>
-                    <a
-                      href={`https://www.getyourguide.com/s/?q=${encodeURIComponent(dest)}&${PARTNER}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-background/60 hover:text-primary transition-colors"
-                    >
-                      {dest}
-                    </a>
-                  </li>
-                )
-              )}
+              {[
+                { name: "Swiss Alps", slug: "swiss-alps" },
+                { name: "Rocky Mountains", slug: "rocky-mountains" },
+                { name: "Appalachian Mountains", slug: "appalachian-mountains" },
+                { name: "Himalayas", slug: "himalayas" },
+                { name: "Andes Mountains", slug: "andes-mountains" },
+                { name: "Japanese Alps", slug: "japanese-alps" },
+              ].map((dest) => (
+                <li key={dest.slug}>
+                  <Link
+                    to={`/destination/${dest.slug}`}
+                    className="text-background/60 hover:text-primary transition-colors"
+                  >
+                    {dest.name}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
           <div>
-            <h4 className="font-heading font-bold text-background mb-4">Activities</h4>
+            <h4 className="font-heading font-bold text-background mb-4">Company</h4>
             <ul className="space-y-2 text-sm">
-              {["Mountain Hiking", "Skiing", "Photography Tours", "Camping", "Guided Expeditions", "Wildlife Safaris"].map(
+              {[
+                { name: "About Us", path: "/about" },
+                { name: "Contact", path: "/contact" },
+                { name: "Blog", path: "/blog" },
+              ].map((item) => (
+                <li key={item.path}>
+                  <Link
+                    to={item.path}
+                    className="text-background/60 hover:text-primary transition-colors"
+                  >
+                    {item.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+
+            <h4 className="font-heading font-bold text-background mb-4 mt-8">Activities</h4>
+            <ul className="space-y-2 text-sm">
+              {["Mountain Hiking", "Skiing", "Photography Tours", "Guided Expeditions"].map(
                 (act) => (
                   <li key={act}>
                     <a
@@ -61,20 +83,23 @@ const Footer = () => {
           </div>
 
           <div>
-            <h4 className="font-heading font-bold text-background mb-4">Popular Searches</h4>
+            <h4 className="font-heading font-bold text-background mb-4">Legal</h4>
             <ul className="space-y-2 text-sm">
               {[
-                "Brokeback Mountain Tours",
-                "Mountain Time Zone Guide",
-                "Bernese Mountain Dog Trails",
-                "Rocky Mountain National Park",
-                "Tallest Mountain in the World",
-                "Appalachian Trail Guide",
+                { name: "Privacy Policy", path: "/privacy-policy" },
+                { name: "Terms of Service", path: "/terms-of-service" },
+                { name: "Cookie Policy", path: "/cookie-policy" },
+                { name: "DMCA", path: "/dmca" },
+                { name: "Legal Notice", path: "/legal-notice" },
+                { name: "Parents Info", path: "/parents-info" },
               ].map((item) => (
-                <li key={item}>
-                  <a href="#guide" className="text-background/60 hover:text-primary transition-colors">
-                    {item}
-                  </a>
+                <li key={item.path}>
+                  <Link
+                    to={item.path}
+                    className="text-background/60 hover:text-primary transition-colors"
+                  >
+                    {item.name}
+                  </Link>
                 </li>
               ))}
             </ul>
