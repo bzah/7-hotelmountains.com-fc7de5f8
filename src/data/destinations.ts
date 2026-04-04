@@ -212,6 +212,12 @@ export const destinations: Destination[] = [
       { name: "Annapurna Region Tours", link: `${GYG_BASE}/s/?q=annapurna&${PARTNER}` },
       { name: "Kathmandu Day Tours", link: `${GYG_BASE}/kathmandu-l2593/?${PARTNER}` },
       { name: "Nepal Adventure Packages", link: `${GYG_BASE}/nepal-l293/?${PARTNER}` },
+    ],
+    faq: [
+      { question: "How much does it cost to trek in Nepal?", answer: "Budget $30-50 per day for tea house accommodation and meals. Permits cost $20-50. A guide costs $25-35/day and a porter $15-20/day." },
+      { question: "Do I need a guide for trekking in the Himalayas?", answer: "Guides are highly recommended for first-timers and mandatory in some regions like Manaslu. They handle logistics, navigation, and altitude sickness monitoring." },
+      { question: "What is the best trek for beginners in Nepal?", answer: "The Langtang Valley Trek (7-10 days) is the best option for beginners — it's close to Kathmandu, less crowded, and lower altitude than Everest Base Camp." },
+      { question: "When is the best time to trek in the Himalayas?", answer: "October-November offers the best visibility and stable weather. March-May is the second-best season with warmer temperatures and blooming rhododendrons." },
     ]
   },
   {
