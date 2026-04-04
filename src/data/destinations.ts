@@ -162,6 +162,12 @@ export const destinations: Destination[] = [
       { name: "Blue Ridge Parkway Tours", link: `${GYG_BASE}/asheville-l30277/?${PARTNER}` },
       { name: "Shenandoah Hiking", link: `${GYG_BASE}/shenandoah-national-park-l97278/?${PARTNER}` },
       { name: "Appalachian Trail Experiences", link: `${GYG_BASE}/s/?q=appalachian+trail&${PARTNER}` },
+    ],
+    faq: [
+      { question: "How long is the Appalachian Trail?", answer: "The Appalachian Trail is 2,190 miles (3,524 km) long, stretching from Springer Mountain in Georgia to Mount Katahdin in Maine through 14 states." },
+      { question: "What is the best section of the Appalachian Trail for beginners?", answer: "Shenandoah National Park in Virginia is the best beginner section with well-maintained trails, moderate terrain, and shelters every 8-10 miles." },
+      { question: "When is peak fall foliage in the Appalachian Mountains?", answer: "Peak fall foliage occurs from late September in New England to early November in the southern Appalachians. October is generally the best month for autumn colors." },
+      { question: "Is there an entrance fee for the Great Smoky Mountains?", answer: "No, the Great Smoky Mountains National Park has no entrance fee, making it America's most visited national park with over 12 million visitors annually." },
     ]
   },
   {
