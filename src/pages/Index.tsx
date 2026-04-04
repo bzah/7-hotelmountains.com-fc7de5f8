@@ -1,16 +1,60 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import Navbar from "@/components/Navbar";
+import HeroSection from "@/components/HeroSection";
+import DestinationsSection from "@/components/DestinationsSection";
+import ActivitiesSection from "@/components/ActivitiesSection";
+import ToursWidget from "@/components/ToursWidget";
+import MountainGuide from "@/components/MountainGuide";
+import Footer from "@/components/Footer";
+import { useEffect } from "react";
 
-// IMPORTANT: Fully REPLACE this with your own code
-const PlaceholderIndex = () => {
-  // PLACEHOLDER: Replace this entire return statement with the user's app.
-  // The inline background color is intentionally not part of the design system.
+const Index = () => {
+  useEffect(() => {
+    document.title = "HotelMountains.com — Mountain Travel & Tours Worldwide";
+    const meta = document.querySelector('meta[name="description"]');
+    if (meta) {
+      meta.setAttribute("content", "Explore the world's greatest mountain destinations. Book mountain hiking tours, skiing adventures, and guided expeditions in the Alps, Rockies, Himalayas, Appalachian Mountains and more.");
+    } else {
+      const m = document.createElement("meta");
+      m.name = "description";
+      m.content = "Explore the world's greatest mountain destinations. Book mountain hiking tours, skiing adventures, and guided expeditions in the Alps, Rockies, Himalayas, Appalachian Mountains and more.";
+      document.head.appendChild(m);
+    }
+
+    // JSON-LD structured data
+    const script = document.createElement("script");
+    script.type = "application/ld+json";
+    script.textContent = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "TravelAgency",
+      "name": "HotelMountains.com",
+      "url": "https://hotelmountains.com",
+      "description": "Mountain travel guide and tour booking platform covering destinations worldwide including the Alps, Rocky Mountains, Himalayas, and Appalachian Mountains.",
+      "areaServed": "Worldwide",
+      "sameAs": [],
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://www.getyourguide.com/s/?q={search_term}&partner_id=0IQTGX8",
+        "query-input": "required name=search_term"
+      }
+    });
+    document.head.appendChild(script);
+
+    return () => {
+      document.head.removeChild(script);
+    };
+  }, []);
+
   return (
-    <div className="flex min-h-screen items-center justify-center" style={{ backgroundColor: '#fcfbf8' }}>
-      <img data-lovable-blank-page-placeholder="REMOVE_THIS" src="/placeholder.svg" alt="Your app will live here!" />
+    <div className="min-h-screen">
+      <Navbar />
+      <HeroSection />
+      <DestinationsSection />
+      <ActivitiesSection />
+      <ToursWidget />
+      <MountainGuide />
+      <Footer />
     </div>
   );
 };
-
-const Index = PlaceholderIndex;
 
 export default Index;
