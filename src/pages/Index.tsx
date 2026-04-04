@@ -4,6 +4,7 @@ import DestinationsSection from "@/components/DestinationsSection";
 import ActivitiesSection from "@/components/ActivitiesSection";
 import ToursWidget from "@/components/ToursWidget";
 import MountainGuide from "@/components/MountainGuide";
+import BlogSection from "@/components/BlogSection";
 import Footer from "@/components/Footer";
 import { useEffect } from "react";
 
