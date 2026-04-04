@@ -243,6 +243,28 @@ const DestinationPage = () => {
             <ExternalLink className="h-4 w-4" />
           </a>
         </div>
+        {/* FAQ Section */}
+        <div className="mt-14 mb-14">
+          <h2 className="font-heading text-2xl font-bold text-foreground mb-6">
+            Frequently Asked Questions About {destination.name}
+          </h2>
+          <div className="space-y-4">
+            {destination.faq.map((item, i) => (
+              <details
+                key={i}
+                className="group bg-card border border-border rounded-xl overflow-hidden"
+              >
+                <summary className="flex items-center justify-between p-5 cursor-pointer font-semibold text-foreground hover:text-primary transition-colors list-none">
+                  {item.question}
+                  <span className="ml-2 text-muted-foreground group-open:rotate-180 transition-transform">▼</span>
+                </summary>
+                <div className="px-5 pb-5 text-muted-foreground leading-relaxed">
+                  {item.answer}
+                </div>
+              </details>
+            ))}
+          </div>
+        </div>
       </main>
 
       {/* Other destinations */}

@@ -7,8 +7,38 @@ import { Clock, Calendar, ArrowRight } from "lucide-react";
 
 const Blog = () => {
   useEffect(() => {
-    document.title = "Mountain Travel Blog | HotelMountains.com";
+    document.title = "Mountain Travel Blog — Hiking Guides, Trail Tips & Tour Reviews | HotelMountains.com";
+    const meta = document.querySelector('meta[name="description"]');
+    if (meta) {
+      meta.setAttribute("content", "Read expert mountain travel guides, hiking trail reviews, and adventure tips. Covering the Swiss Alps, Rocky Mountains, Himalayas, Appalachian Trail, and more.");
+    } else {
+      const m = document.createElement("meta");
+      m.name = "description";
+      m.content = "Read expert mountain travel guides, hiking trail reviews, and adventure tips. Covering the Swiss Alps, Rocky Mountains, Himalayas, Appalachian Trail, and more.";
+      document.head.appendChild(m);
+    }
+
+    // Blog CollectionPage schema
+    const script = document.createElement("script");
+    script.type = "application/ld+json";
+    script.textContent = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      name: "Mountain Travel Blog",
+      description: "Expert mountain travel guides, hiking trail reviews, and adventure tips.",
+      url: "https://hotelmountains.com/blog",
+      publisher: {
+        "@type": "Organization",
+        name: "HotelMountains.com",
+        url: "https://hotelmountains.com"
+      }
+    });
+    document.head.appendChild(script);
+
     window.scrollTo(0, 0);
+    return () => {
+      document.head.removeChild(script);
+    };
   }, []);
 
   return (
