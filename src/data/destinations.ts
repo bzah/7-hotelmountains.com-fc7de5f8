@@ -13,6 +13,7 @@ export interface Destination {
   sections: { heading: string; content: string[] }[];
   bestTimeToVisit: string;
   topActivities: { name: string; link: string }[];
+  faq: { question: string; answer: string }[];
 }
 
 const GYG_BASE = "https://www.getyourguide.com";
