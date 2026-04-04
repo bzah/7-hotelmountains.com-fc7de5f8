@@ -62,6 +62,12 @@ export const destinations: Destination[] = [
       { name: "Zermatt Glacier Paradise", link: `${GYG_BASE}/zermatt-l959/?${PARTNER}` },
       { name: "Bernina Express", link: `${GYG_BASE}/bernina-express-l97295/?${PARTNER}` },
       { name: "Grindelwald First Cliff Walk", link: `${GYG_BASE}/grindelwald-l1085/?${PARTNER}` },
+    ],
+    faq: [
+      { question: "What is the best time to visit the Swiss Alps?", answer: "June to September is ideal for hiking with peak wildflowers in July. December to April is best for skiing. September offers fewer crowds and golden larch forests." },
+      { question: "How much does a trip to the Swiss Alps cost?", answer: "Budget CHF 100-150 per day for moderate travel. Mid-range hotels average CHF 150-200/night. The Swiss Travel Pass (from CHF 232 for 3 days) covers trains, buses, and boats." },
+      { question: "Do I need a visa to visit Switzerland?", answer: "US, UK, EU, Canadian, and Australian citizens can visit Switzerland visa-free for up to 90 days. Check with your embassy for other nationalities." },
+      { question: "What are the must-see places in the Swiss Alps?", answer: "The Jungfrau Region (Interlaken, Grindelwald, Lauterbrunnen), Zermatt and the Matterhorn, Engadin Valley (St. Moritz), and the Bernese Oberland are the top destinations." },
     ]
   },
   {
