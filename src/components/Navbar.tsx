@@ -65,16 +65,27 @@ const Navbar = () => {
 
       {open && (
         <div className="md:hidden bg-background border-b border-border px-4 pb-4">
-          {navLinks.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              onClick={() => setOpen(false)}
-              className="block py-3 text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
-            >
-              {link.label}
-            </a>
-          ))}
+          {navLinks.map((link) =>
+            link.isRoute ? (
+              <Link
+                key={link.label}
+                to={link.href}
+                onClick={() => setOpen(false)}
+                className="block py-3 text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
+              >
+                {link.label}
+              </Link>
+            ) : (
+              <a
+                key={link.label}
+                href={link.href}
+                onClick={() => setOpen(false)}
+                className="block py-3 text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
+              >
+                {link.label}
+              </a>
+            )
+          )}
           <a
             href="https://www.getyourguide.com/?partner_id=0IQTGX8&utm_medium=online_publisher"
             target="_blank"
