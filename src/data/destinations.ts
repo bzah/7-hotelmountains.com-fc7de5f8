@@ -262,6 +262,12 @@ export const destinations: Destination[] = [
       { name: "Cusco Day Trips", link: `${GYG_BASE}/cusco-l432/?${PARTNER}` },
       { name: "Patagonia Adventures", link: `${GYG_BASE}/s/?q=patagonia&${PARTNER}` },
       { name: "Sacred Valley Tours", link: `${GYG_BASE}/sacred-valley-l97282/?${PARTNER}` },
+    ],
+    faq: [
+      { question: "How far in advance should I book the Inca Trail?", answer: "Book Inca Trail permits 4-6 months ahead — only 500 people (including guides and porters) are allowed per day. Popular dates sell out quickly." },
+      { question: "What is the altitude of Machu Picchu?", answer: "Machu Picchu sits at 2,430 meters (7,972 feet). Cusco, the gateway city, is higher at 3,400 meters. Spend 2-3 days acclimatizing in Cusco before heading to Machu Picchu." },
+      { question: "What is the best time to visit Patagonia?", answer: "November to March (austral summer) is the best time to visit Patagonia. January and February have the longest days but also the most wind and tourists." },
+      { question: "Is it safe to travel in the Andes?", answer: "Yes, popular trekking destinations in Peru, Chile, and Argentina are safe for tourists. Take normal precautions, acclimatize properly to altitude, and use registered guides for remote treks." },
     ]
   },
   {
