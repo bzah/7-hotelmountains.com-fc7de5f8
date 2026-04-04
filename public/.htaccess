@@ -1,0 +1,52 @@
+# ============================================
+# HotelMountains.com — Apache .htaccess
+# For Hostinger / Apache fallback (if used)
+# ============================================
+
+RewriteEngine On
+
+# --- Force HTTPS ---
+RewriteCond %{HTTPS} off
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# --- Remove www ---
+RewriteCond %{HTTP_HOST} ^www\.hotelmountains\.com [NC]
+RewriteRule ^ https://hotelmountains.com%{REQUEST_URI} [L,R=301]
+
+# --- Remove trailing slash (except root /) ---
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} (.+)/$
+RewriteRule ^ %1 [L,R=301]
+
+# --- Block old WordPress URLs with 410 Gone ---
+RewriteRule ^wp-admin       - [G,L]
+RewriteRule ^wp-login\.php  - [G,L]
+RewriteRule ^wp-content     - [G,L]
+RewriteRule ^wp-includes    - [G,L]
+RewriteRule ^xmlrpc\.php    - [G,L]
+RewriteRule ^wp-json        - [G,L]
+RewriteRule ^wp-cron\.php   - [G,L]
+
+# --- SPA Fallback: serve index.html for all non-file routes ---
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ /index.html [L]
+
+# --- Security headers ---
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+  Header set X-Frame-Options "SAMEORIGIN"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# --- Cache static assets ---
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType text/css "access plus 1 month"
+  ExpiresByType application/javascript "access plus 1 month"
+  ExpiresByType application/x-javascript "access plus 1 month"
+</IfModule>
