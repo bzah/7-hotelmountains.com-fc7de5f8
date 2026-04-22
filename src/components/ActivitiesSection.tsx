@@ -43,22 +43,22 @@ const activities = [
 
 const ActivitiesSection = () => {
   return (
-    <section id="activities" className="py-24 bg-muted/50">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <p className="text-secondary font-semibold text-sm uppercase tracking-wider mb-3">
+    <section id="activities" className="py-14 md:py-24 bg-muted/50">
+      <div className="container mx-auto px-5 md:px-6">
+        <div className="text-center mb-10 md:mb-16">
+          <p className="text-secondary font-semibold text-xs sm:text-sm uppercase tracking-wider mb-3">
             Things to Do
           </p>
-          <h2 className="font-heading text-4xl md:text-5xl font-bold text-foreground mb-4">
+          <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4">
             Mountain Activities & Adventures
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
+          <p className="text-muted-foreground max-w-2xl mx-auto text-base md:text-lg">
             Whether you're chasing mountain time on a quiet trail or conquering the tallest mountain in the world,
             find your perfect mountain adventure.
           </p>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {activities.map((activity) => {
             const Icon = activity.icon;
             return (
@@ -67,12 +67,12 @@ const ActivitiesSection = () => {
                 href={activity.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group bg-background rounded-xl p-8 shadow-card hover:shadow-elevated transition-all duration-300 hover:-translate-y-1 border border-border text-center"
+                className="group bg-background rounded-xl p-6 sm:p-8 shadow-card hover:shadow-elevated transition-all duration-300 hover:-translate-y-1 border border-border text-center"
               >
-                <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-5">
+                <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4 sm:mb-5">
                   <Icon className="h-7 w-7 text-primary" />
                 </div>
-                <h3 className="font-heading text-xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors">
+                <h3 className="font-heading text-lg sm:text-xl font-bold text-foreground mb-2 sm:mb-3 group-hover:text-primary transition-colors">
                   {activity.title}
                 </h3>
                 <p className="text-muted-foreground text-sm leading-relaxed">

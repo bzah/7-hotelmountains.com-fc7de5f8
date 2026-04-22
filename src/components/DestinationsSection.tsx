@@ -4,22 +4,22 @@ import { destinations } from "@/data/destinations";
 
 const DestinationsSection = () => {
   return (
-    <section id="destinations" className="py-24 bg-background">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <p className="text-secondary font-semibold text-sm uppercase tracking-wider mb-3">
+    <section id="destinations" className="py-14 md:py-24 bg-background">
+      <div className="container mx-auto px-5 md:px-6">
+        <div className="text-center mb-10 md:mb-16">
+          <p className="text-secondary font-semibold text-xs sm:text-sm uppercase tracking-wider mb-3">
             Explore Worldwide
           </p>
-          <h2 className="font-heading text-4xl md:text-5xl font-bold text-foreground mb-4">
+          <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4">
             Top Mountain Destinations
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
+          <p className="text-muted-foreground max-w-2xl mx-auto text-base md:text-lg">
             From the tallest mountain in the world to hidden alpine gems — discover the best mountain
             destinations for hiking, skiing, and unforgettable adventures.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 md:gap-8">
           {destinations.map((dest) => (
             <Link
               key={dest.slug}
@@ -34,16 +34,16 @@ const DestinationsSection = () => {
                   loading="lazy"
                 />
               </div>
-              <div className="p-6">
+              <div className="p-5 sm:p-6">
                 <div className="flex items-start gap-3 mb-3">
-                  <span className="text-3xl">{dest.emoji}</span>
-                  <div>
-                    <h3 className="font-heading text-xl font-bold text-foreground group-hover:text-primary transition-colors">
+                  <span className="text-2xl sm:text-3xl shrink-0">{dest.emoji}</span>
+                  <div className="min-w-0">
+                    <h3 className="font-heading text-lg sm:text-xl font-bold text-foreground group-hover:text-primary transition-colors">
                       {dest.name}
                     </h3>
                     <div className="flex items-center gap-1 text-muted-foreground text-sm">
-                      <MapPin className="h-3.5 w-3.5" />
-                      {dest.country}
+                      <MapPin className="h-3.5 w-3.5 shrink-0" />
+                      <span className="truncate">{dest.country}</span>
                     </div>
                   </div>
                 </div>

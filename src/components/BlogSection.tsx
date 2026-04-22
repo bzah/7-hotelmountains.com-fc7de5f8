@@ -6,22 +6,22 @@ const BlogSection = () => {
   const featured = blogArticles.slice(0, 3);
 
   return (
-    <section id="blog" className="py-20 bg-muted/40">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-14">
-          <span className="text-secondary font-semibold text-sm uppercase tracking-widest">
+    <section id="blog" className="py-14 md:py-20 bg-muted/40">
+      <div className="container mx-auto px-5 md:px-6">
+        <div className="text-center mb-10 md:mb-14">
+          <span className="text-secondary font-semibold text-xs sm:text-sm uppercase tracking-widest">
             Travel Journal
           </span>
-          <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground mt-3 mb-4">
+          <h2 className="font-heading text-3xl sm:text-4xl font-bold text-foreground mt-3 mb-4">
             Mountain Travel Guides & Tips
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-muted-foreground max-w-2xl mx-auto text-base md:text-lg">
             Expert guides, seasonal tips, and insider knowledge to help you plan
             unforgettable mountain adventures around the world.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 md:gap-8">
           {featured.map((article) => (
             <Link
               key={article.slug}
@@ -36,18 +36,18 @@ const BlogSection = () => {
                   loading="lazy"
                 />
               </div>
-              <div className="p-6">
+              <div className="p-5 sm:p-6">
                 <span className="text-xs font-semibold text-secondary uppercase tracking-wider">
                   {article.category}
                 </span>
-                <h3 className="font-heading text-lg font-bold text-foreground mt-2 mb-3 group-hover:text-primary transition-colors line-clamp-2">
+                <h3 className="font-heading text-base sm:text-lg font-bold text-foreground mt-2 mb-3 group-hover:text-primary transition-colors line-clamp-2">
                   {article.title}
                 </h3>
                 <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
                   {article.excerpt}
                 </p>
                 <div className="flex items-center justify-between text-xs text-muted-foreground">
-                  <div className="flex items-center gap-3">
+                  <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
                     <span className="flex items-center gap-1">
                       <Clock className="h-3.5 w-3.5" />
                       {article.readTime}
@@ -67,10 +67,10 @@ const BlogSection = () => {
           ))}
         </div>
 
-        <div className="text-center mt-12">
+        <div className="text-center mt-10 md:mt-12">
           <Link
             to="/blog"
-            className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-8 py-3 rounded-lg font-semibold hover:opacity-90 transition-opacity"
+            className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 sm:px-8 py-3 rounded-lg font-semibold hover:opacity-90 transition-opacity"
           >
             View All Articles
             <ArrowRight className="h-4 w-4" />
