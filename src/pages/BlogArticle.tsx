@@ -18,24 +18,78 @@ const BlogArticle = () => {
       }
       window.scrollTo(0, 0);
 
-      // JSON-LD
-      const script = document.createElement("script");
-      script.type = "application/ld+json";
-      script.textContent = JSON.stringify({
+      const url = `https://hotelmountains.com/blog/${article.slug}`;
+
+      // Canonical
+      let canonical = document.querySelector('link[rel="canonical"]') as HTMLLinkElement | null;
+      if (!canonical) {
+        canonical = document.createElement("link");
+        canonical.rel = "canonical";
+        document.head.appendChild(canonical);
+      }
+      canonical.href = url;
+
+      // Article schema (rich result eligible)
+      const article_script = document.createElement("script");
+      article_script.type = "application/ld+json";
+      article_script.textContent = JSON.stringify({
         "@context": "https://schema.org",
-        "@type": "Article",
+        "@type": "BlogPosting",
+        "@id": `${url}#article`,
+        mainEntityOfPage: { "@type": "WebPage", "@id": url },
         headline: article.title,
+        name: article.title,
         description: article.metaDescription,
-        image: article.image,
+        image: {
+          "@type": "ImageObject",
+          url: article.image,
+          width: 1200,
+          height: 800,
+        },
         datePublished: article.date,
+        dateModified: article.date,
+        articleSection: article.category,
+        keywords: [article.category, "mountain travel", "hiking", "trekking", article.title.toLowerCase()].join(", "),
+        wordCount: article.content.join(" ").split(/\s+/).length,
+        timeRequired: `PT${article.readTime.replace(/\D/g, "")}M`,
+        inLanguage: "en",
+        author: {
+          "@type": "Organization",
+          name: "HotelMountains.com Editorial Team",
+          url: "https://hotelmountains.com/about",
+        },
         publisher: {
           "@type": "Organization",
+          "@id": "https://hotelmountains.com/#organization",
           name: "HotelMountains.com",
+          logo: {
+            "@type": "ImageObject",
+            url: "https://hotelmountains.com/favicon.png",
+            width: 512,
+            height: 512,
+          },
         },
+        isPartOf: { "@id": "https://hotelmountains.com/#website" },
       });
-      document.head.appendChild(script);
+      document.head.appendChild(article_script);
+
+      // BreadcrumbList
+      const breadcrumb = document.createElement("script");
+      breadcrumb.type = "application/ld+json";
+      breadcrumb.textContent = JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: "https://hotelmountains.com/" },
+          { "@type": "ListItem", position: 2, name: "Blog", item: "https://hotelmountains.com/blog" },
+          { "@type": "ListItem", position: 3, name: article.title, item: url },
+        ],
+      });
+      document.head.appendChild(breadcrumb);
+
       return () => {
-        document.head.removeChild(script);
+        if (article_script.parentNode) article_script.parentNode.removeChild(article_script);
+        if (breadcrumb.parentNode) breadcrumb.parentNode.removeChild(breadcrumb);
       };
     }
   }, [article]);
