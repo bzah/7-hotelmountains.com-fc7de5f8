@@ -72,10 +72,15 @@ export const destinations: Destination[] = [
       { question: "How much does a trip to the Swiss Alps cost?", answer: "Budget CHF 100-150 per day for moderate travel. Mid-range hotels average CHF 150-200/night. The Swiss Travel Pass (from CHF 232 for 3 days) covers trains, buses, and boats." },
       { question: "Do I need a visa to visit Switzerland?", answer: "US, UK, EU, Canadian, and Australian citizens can visit Switzerland visa-free for up to 90 days. Check with your embassy for other nationalities." },
       { question: "What are the must-see places in the Swiss Alps?", answer: "The Jungfrau Region (Interlaken, Grindelwald, Lauterbrunnen), Zermatt and the Matterhorn, Engadin Valley (St. Moritz), and the Bernese Oberland are the top destinations." },
+    ],
+    coordinates: { latitude: 46.5197, longitude: 7.9817 },
+    relatedKeywords: [
+      "swiss alps", "swiss alps hiking", "switzerland mountains", "matterhorn", "jungfrau", "zermatt",
+      "interlaken", "grindelwald", "lauterbrunnen", "swiss alps tours", "alpine hiking switzerland",
+      "switzerland ski resorts", "glacier express", "bernina express", "swiss travel pass",
+      "best time to visit swiss alps", "swiss alps weather", "swiss alps map", "alps hiking trails"
     ]
   },
-  {
-    slug: "rocky-mountains",
     name: "Rocky Mountains",
     country: "USA & Canada",
     emoji: "🏔️",
@@ -122,10 +127,15 @@ export const destinations: Destination[] = [
       { question: "When is the best time to visit Rocky Mountain National Park?", answer: "June to September for hiking and wildlife. September-October offers fall colors and elk bugling with fewer crowds. December to April is best for skiing." },
       { question: "Do I need a reservation for Rocky Mountain National Park?", answer: "Yes, a timed-entry reservation is required during peak months (May through October). Book as soon as they become available — they sell out quickly. The park entrance fee is $30 per vehicle." },
       { question: "What wildlife can I see in the Rocky Mountains?", answer: "Grizzly bears, elk, moose, bighorn sheep, wolves, mountain lions, and bison roam throughout the Rocky Mountain ecosystem. Elk are most visible during the September-October rutting season." },
+    ],
+    coordinates: { latitude: 40.3428, longitude: -105.6836 },
+    relatedKeywords: [
+      "rocky mountains", "rocky mountain national park", "rmnp", "colorado mountains", "banff",
+      "banff national park", "lake louise", "moraine lake", "icefields parkway", "glacier national park",
+      "grand teton", "yellowstone", "jackson hole", "aspen colorado", "vail colorado", "estes park",
+      "canadian rockies", "rocky mountain time", "colorado 14ers", "mount elbert", "rockies hiking trails"
     ]
   },
-  {
-    slug: "appalachian-mountains",
     name: "Appalachian Mountains",
     country: "Eastern USA",
     emoji: "🌲",
@@ -172,10 +182,15 @@ export const destinations: Destination[] = [
       { question: "What is the best section of the Appalachian Trail for beginners?", answer: "Shenandoah National Park in Virginia is the best beginner section with well-maintained trails, moderate terrain, and shelters every 8-10 miles." },
       { question: "When is peak fall foliage in the Appalachian Mountains?", answer: "Peak fall foliage occurs from late September in New England to early November in the southern Appalachians. October is generally the best month for autumn colors." },
       { question: "Is there an entrance fee for the Great Smoky Mountains?", answer: "No, the Great Smoky Mountains National Park has no entrance fee, making it America's most visited national park with over 12 million visitors annually." },
+    ],
+    coordinates: { latitude: 35.6532, longitude: -83.5070 },
+    relatedKeywords: [
+      "appalachian mountains", "appalachian trail", "great smoky mountains", "smoky mountains",
+      "blue ridge mountains", "blue ridge parkway", "shenandoah national park", "white mountains",
+      "mount washington", "asheville nc", "gatlinburg", "smokies hiking", "appalachian trail map",
+      "fall foliage appalachian", "appalachian mountains map", "eastern usa mountains", "best appalachian hikes"
     ]
   },
-  {
-    slug: "himalayas",
     name: "Himalayas",
     country: "Nepal, India & Tibet",
     emoji: "🏔️",
@@ -222,10 +237,15 @@ export const destinations: Destination[] = [
       { question: "Do I need a guide for trekking in the Himalayas?", answer: "Guides are highly recommended for first-timers and mandatory in some regions like Manaslu. They handle logistics, navigation, and altitude sickness monitoring." },
       { question: "What is the best trek for beginners in Nepal?", answer: "The Langtang Valley Trek (7-10 days) is the best option for beginners — it's close to Kathmandu, less crowded, and lower altitude than Everest Base Camp." },
       { question: "When is the best time to trek in the Himalayas?", answer: "October-November offers the best visibility and stable weather. March-May is the second-best season with warmer temperatures and blooming rhododendrons." },
+    ],
+    coordinates: { latitude: 27.9881, longitude: 86.9250 },
+    relatedKeywords: [
+      "himalayas", "himalaya trekking", "mount everest", "everest base camp trek", "ebc trek",
+      "annapurna circuit", "annapurna base camp", "abc trek", "langtang valley", "manaslu circuit",
+      "nepal trekking", "kathmandu", "namche bazaar", "tibet", "k2", "kangchenjunga", "highest mountain in the world",
+      "trekking nepal cost", "best trek in nepal for beginners", "himalayan tours", "himalayan adventure travel"
     ]
   },
-  {
-    slug: "andes-mountains",
     name: "Andes Mountains",
     country: "South America",
     emoji: "🦙",
@@ -272,10 +292,15 @@ export const destinations: Destination[] = [
       { question: "What is the altitude of Machu Picchu?", answer: "Machu Picchu sits at 2,430 meters (7,972 feet). Cusco, the gateway city, is higher at 3,400 meters. Spend 2-3 days acclimatizing in Cusco before heading to Machu Picchu." },
       { question: "What is the best time to visit Patagonia?", answer: "November to March (austral summer) is the best time to visit Patagonia. January and February have the longest days but also the most wind and tourists." },
       { question: "Is it safe to travel in the Andes?", answer: "Yes, popular trekking destinations in Peru, Chile, and Argentina are safe for tourists. Take normal precautions, acclimatize properly to altitude, and use registered guides for remote treks." },
+    ],
+    coordinates: { latitude: -13.1631, longitude: -72.5450 },
+    relatedKeywords: [
+      "andes mountains", "machu picchu", "inca trail", "salkantay trek", "cusco peru", "sacred valley",
+      "patagonia", "torres del paine", "w trek", "fitz roy", "los glaciares", "huaraz", "cordillera blanca",
+      "santa cruz trek", "atacama desert", "south america mountains", "longest mountain range",
+      "machu picchu altitude", "patagonia best time to visit", "andes peru", "andes chile", "andes argentina"
     ]
   },
-  {
-    slug: "japanese-alps",
     name: "Japanese Alps",
     country: "Japan",
     emoji: "🇯🇵",
@@ -322,6 +347,13 @@ export const destinations: Destination[] = [
       { question: "How do I get to the Japanese Alps from Tokyo?", answer: "Take the Shinkansen from Tokyo to Nagano (80 minutes) or a limited express to Matsumoto (2.5 hours). The Japan Rail Pass covers both routes." },
       { question: "Can I visit Shirakawa-go as a day trip?", answer: "Yes, Shirakawa-go can be visited as a day trip from Takayama (50 minutes by bus) or Kanazawa (75 minutes). However, staying overnight in a traditional farmhouse is highly recommended." },
       { question: "What are mountain huts like in Japan?", answer: "Japanese mountain huts (yamagoya) serve hot meals, provide futon bedding, and cost ¥8,000-12,000/night with dinner and breakfast. Book ahead for weekends and peak season." },
+    ],
+    coordinates: { latitude: 36.2891, longitude: 137.6480 },
+    relatedKeywords: [
+      "japanese alps", "nihon arupusu", "kamikochi", "tateyama alpine route", "tateyama snow corridor",
+      "shirakawa-go", "gokayama", "hakuba valley", "matsumoto", "takayama", "nagano", "northern alps japan",
+      "central alps japan", "southern alps japan", "japan mountain hiking", "japan onsen mountain",
+      "japan ryokan mountain", "mount fuji vs japanese alps", "japan rail pass alps", "japanese alps best time"
     ]
   }
 ];
