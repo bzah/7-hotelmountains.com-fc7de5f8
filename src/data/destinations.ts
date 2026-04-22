@@ -46,7 +46,7 @@ const buildSeoContent = (
 const GYG_BASE = "https://www.getyourguide.com";
 const PARTNER = "partner_id=0IQTGX8&utm_medium=online_publisher";
 
-export const destinations: Destination[] = [
+const rawDestinations: Destination[] = [
   {
     slug: "swiss-alps",
     name: "Swiss Alps",
