@@ -4,6 +4,7 @@ import { blogArticles } from "@/data/blogArticles";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Clock, Calendar, ArrowRight } from "lucide-react";
+import { applySeoUrls } from "@/lib/seo";
 
 const META_TITLE =
   "Mountain Travel Blog — Hiking Guides, Trekking Tips, Trail Reviews & Tour Advice | HotelMountains.com";
@@ -43,6 +44,7 @@ const Blog = () => {
     document.title = META_TITLE;
     upsertMeta("description", META_DESCRIPTION);
     upsertMeta("keywords", META_KEYWORDS);
+    applySeoUrls("/blog");
 
     const scripts: HTMLScriptElement[] = [];
 

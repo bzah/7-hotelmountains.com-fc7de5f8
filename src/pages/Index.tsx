@@ -9,6 +9,7 @@ import MountainGuide from "@/components/MountainGuide";
 import BlogSection from "@/components/BlogSection";
 import Footer from "@/components/Footer";
 import { useEffect } from "react";
+import { applySeoUrls } from "@/lib/seo";
 
 const META_TITLE =
   "HotelMountains.com — Mountain Travel Guides, Hiking Tours & Ski Trips Worldwide";
@@ -52,6 +53,7 @@ const Index = () => {
     document.title = META_TITLE;
     upsertMeta("description", META_DESCRIPTION);
     upsertMeta("keywords", META_KEYWORDS);
+    applySeoUrls("/");
 
     const scripts: HTMLScriptElement[] = [];
 

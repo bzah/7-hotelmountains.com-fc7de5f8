@@ -6,6 +6,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import HotelSearchWidget from "@/components/HotelSearchWidget";
 import { MapPin, Calendar, ArrowLeft, ExternalLink, Mountain, Star, BookOpen, Compass } from "lucide-react";
+import { upsertHreflangAlternates } from "@/lib/seo";
 
 const DestinationToursWidget = ({ query }: { query: string }) => {
   useEffect(() => {
@@ -68,6 +69,7 @@ const DestinationPage = () => {
     upsertMeta("description", destination.metaDescription);
     upsertMeta("keywords", destination.relatedKeywords.join(", "));
     upsertCanonical(`https://hotelmountains.com/destination/${destination.slug}`);
+    upsertHreflangAlternates(`https://hotelmountains.com/destination/${destination.slug}`);
     window.scrollTo(0, 0);
 
     const scripts: HTMLScriptElement[] = [];

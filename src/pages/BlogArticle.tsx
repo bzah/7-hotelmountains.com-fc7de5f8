@@ -5,6 +5,7 @@ import { destinations } from "@/data/destinations";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { ArrowLeft, Clock, Calendar, MapPin, Mountain, ExternalLink, Compass } from "lucide-react";
+import { upsertHreflangAlternates } from "@/lib/seo";
 
 const BlogArticle = () => {
   const { slug } = useParams<{ slug: string }>();
