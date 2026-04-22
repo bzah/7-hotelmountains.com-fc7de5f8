@@ -1,0 +1,44 @@
+{
+  "nav": {
+    "home": "Home",
+    "destinations": "Destinations",
+    "activities": "Activities",
+    "tours": "Tours",
+    "flights": "Flights",
+    "hotels": "Hotels",
+    "blog": "Blog",
+    "guide": "Travel Guide",
+    "bookNow": "Book Now",
+    "language": "Language",
+    "toggleMenu": "Toggle menu"
+  },
+  "hero": {
+    "title": "Mountain Adventures",
+    "subtitle": "Explore the World's Greatest Peaks & Trails",
+    "description": "Discover breathtaking mountain destinations worldwide — from the Swiss Alps to the Appalachian Mountains, Rocky Mountain trails to Himalayan expeditions. Your next summit awaits.",
+    "ctaDestinations": "Top Destinations",
+    "ctaTours": "Find Tours"
+  },
+  "footer": {
+    "tagline": "Your ultimate guide to mountain travel worldwide. Discover peaks, trails, and adventures across every continent.",
+    "destinations": "Destinations",
+    "company": "Company",
+    "activities": "Activities",
+    "legal": "Legal",
+    "about": "About Us",
+    "contact": "Contact",
+    "blog": "Blog",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "cookies": "Cookie Policy",
+    "dmca": "DMCA",
+    "legalNotice": "Legal Notice",
+    "parents": "Parents Info",
+    "rights": "All rights reserved",
+    "disclosure": "Tours powered by GetYourGuide. We may earn a commission at no extra cost to you.",
+    "actHiking": "Mountain Hiking",
+    "actSkiing": "Skiing",
+    "actPhoto": "Photography Tours",
+    "actGuided": "Guided Expeditions"
+  }
+}
