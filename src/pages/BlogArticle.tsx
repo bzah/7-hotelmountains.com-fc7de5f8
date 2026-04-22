@@ -63,6 +63,7 @@ const BlogArticle = () => {
           "@type": "Organization",
           "@id": "https://hotelmountains.com/#organization",
           name: "HotelMountains.com",
+          url: "https://hotelmountains.com",
           logo: {
             "@type": "ImageObject",
             url: "https://hotelmountains.com/favicon.png",
