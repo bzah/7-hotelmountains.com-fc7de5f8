@@ -201,6 +201,61 @@ const BlogArticle = () => {
             </a>
           </div>
 
+          {/* Internal Links: Related Destinations */}
+          <section className="mt-12">
+            <h2 className="font-heading text-2xl font-bold text-foreground mb-2 flex items-center gap-2">
+              <Compass className="h-5 w-5 text-primary" />
+              Related Mountain Destinations
+            </h2>
+            <p className="text-muted-foreground mb-5 text-sm">
+              Explore in-depth travel guides for destinations mentioned in this article.
+            </p>
+            <div className="grid sm:grid-cols-3 gap-4">
+              {destinationLinks.map((d) => (
+                <Link
+                  key={d.slug}
+                  to={`/destination/${d.slug}`}
+                  className="group bg-card border border-border rounded-lg p-4 hover:border-primary/40 hover:shadow-card transition-all"
+                >
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="text-xl">{d.emoji}</span>
+                    <span className="font-heading font-bold text-foreground group-hover:text-primary transition-colors">
+                      {d.name}
+                    </span>
+                  </div>
+                  <p className="text-xs text-muted-foreground line-clamp-2">{d.country} — full travel guide</p>
+                </Link>
+              ))}
+            </div>
+          </section>
+
+          {/* Internal Links: More Tours */}
+          <section className="mt-10">
+            <h2 className="font-heading text-2xl font-bold text-foreground mb-2 flex items-center gap-2">
+              <Mountain className="h-5 w-5 text-primary" />
+              More {article.category} Tours
+            </h2>
+            <p className="text-muted-foreground mb-5 text-sm">
+              Browse curated tour categories to find your perfect mountain adventure.
+            </p>
+            <div className="grid sm:grid-cols-2 gap-3">
+              {moreTourQueries.map((t) => (
+                <a
+                  key={t.label}
+                  href={`https://www.getyourguide.com/s/?q=${encodeURIComponent(t.q)}&partner_id=0IQTGX8&utm_medium=online_publisher`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-between bg-card border border-border rounded-lg p-4 hover:border-primary/40 hover:shadow-card transition-all group"
+                >
+                  <span className="font-semibold text-foreground group-hover:text-primary transition-colors text-sm">
+                    {t.label}
+                  </span>
+                  <ExternalLink className="h-4 w-4 text-muted-foreground group-hover:text-primary transition-colors" />
+                </a>
+              ))}
+            </div>
+          </section>
+
           {/* Back */}
           <Link
             to="/blog"
