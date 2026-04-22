@@ -89,7 +89,21 @@ const BlogArticle = () => {
     }
   }, [article]);
 
+  const [otherCategory, setOtherCategory] = useState<string | null>(null);
+
   if (!article) return <Navigate to="/blog" replace />;
+
+  const otherArticles = blogArticles.filter((a) => a.slug !== slug);
+  const otherCategories = Array.from(
+    new Set(otherArticles.map((a) => a.category))
+  ).sort();
+  const otherCountMap = otherArticles.reduce<Record<string, number>>((m, a) => {
+    m[a.category] = (m[a.category] || 0) + 1;
+    return m;
+  }, {});
+  const filteredRelated = otherCategory
+    ? otherArticles.filter((a) => a.category === otherCategory)
+    : otherArticles.slice(0, 6);
 
   const relatedArticles = blogArticles
     .filter((a) => a.slug !== slug)
@@ -277,35 +291,50 @@ const BlogArticle = () => {
         {/* Related */}
         <section id="related-guides" className="bg-muted/40 py-16 scroll-mt-24">
           <div className="container mx-auto px-4">
-            <h2 className="font-heading text-2xl font-bold text-foreground text-center mb-10">
+            <h2 className="font-heading text-2xl font-bold text-foreground text-center mb-6">
               More Mountain Guides
             </h2>
-            <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-              {relatedArticles.map((a) => (
-                <Link
-                  key={a.slug}
-                  to={`/blog/${a.slug}`}
-                  className="group bg-card rounded-xl overflow-hidden shadow-card hover:shadow-elevated transition-all duration-300"
-                >
-                  <div className="aspect-[16/10] overflow-hidden">
-                    <img
-                      src={a.image}
-                      alt={a.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                      loading="lazy"
-                    />
-                  </div>
-                  <div className="p-5">
-                    <span className="text-xs font-semibold text-secondary uppercase tracking-wider">
-                      {a.category}
-                    </span>
-                    <h3 className="font-heading text-base font-bold text-foreground mt-1.5 group-hover:text-primary transition-colors line-clamp-2">
-                      {a.title}
-                    </h3>
-                  </div>
-                </Link>
-              ))}
+            <div className="mb-8 flex justify-center">
+              <FilterChips
+                label={t("filters.filterByCategory")}
+                options={otherCategories}
+                value={otherCategory}
+                onChange={setOtherCategory}
+                countMap={otherCountMap}
+              />
             </div>
+            {filteredRelated.length === 0 ? (
+              <p className="text-center text-muted-foreground py-8">
+                {t("filters.noResults")}
+              </p>
+            ) : (
+              <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                {filteredRelated.map((a) => (
+                  <Link
+                    key={a.slug}
+                    to={`/blog/${a.slug}`}
+                    className="group bg-card rounded-xl overflow-hidden shadow-card hover:shadow-elevated transition-all duration-300"
+                  >
+                    <div className="aspect-[16/10] overflow-hidden">
+                      <img
+                        src={a.image}
+                        alt={a.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        loading="lazy"
+                      />
+                    </div>
+                    <div className="p-5">
+                      <span className="text-xs font-semibold text-secondary uppercase tracking-wider">
+                        {a.category}
+                      </span>
+                      <h3 className="font-heading text-base font-bold text-foreground mt-1.5 group-hover:text-primary transition-colors line-clamp-2">
+                        {a.title}
+                      </h3>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            )}
           </div>
         </section>
       </main>

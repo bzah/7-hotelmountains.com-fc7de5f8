@@ -230,7 +230,21 @@ const DestinationPage = () => {
     };
   }, [destination]);
 
+  const [otherCountry, setOtherCountry] = useState<string | null>(null);
+
   if (!destination) return <Navigate to="/" replace />;
+
+  const otherDestinations = destinations.filter((d) => d.slug !== slug);
+  const otherCountries = Array.from(
+    new Set(otherDestinations.map((d) => d.country))
+  ).sort();
+  const otherCountMap = otherDestinations.reduce<Record<string, number>>((m, d) => {
+    m[d.country] = (m[d.country] || 0) + 1;
+    return m;
+  }, {});
+  const filteredOthers = otherCountry
+    ? otherDestinations.filter((d) => d.country === otherCountry)
+    : otherDestinations;
 
   const pageUrl = `https://hotelmountains.com/destination/${destination.slug}`;
   const breadcrumbItems = [
@@ -553,10 +567,23 @@ const DestinationPage = () => {
           <h2 className="font-heading text-2xl font-bold text-foreground text-center mb-10">
             Explore Other Destinations
           </h2>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
-            {destinations
-              .filter((d) => d.slug !== slug)
-              .map((d) => (
+          <div className="mb-8 flex justify-center">
+            <FilterChips
+              label={t("filters.filterByCountry")}
+              options={otherCountries}
+              value={otherCountry}
+              onChange={setOtherCountry}
+              countMap={otherCountMap}
+            />
+          </div>
+
+          {filteredOthers.length === 0 ? (
+            <p className="text-center text-muted-foreground py-12">
+              {t("filters.noResults")}
+            </p>
+          ) : (
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
+              {filteredOthers.map((d) => (
                 <Link
                   key={d.slug}
                   to={`/destination/${d.slug}`}
@@ -581,7 +608,8 @@ const DestinationPage = () => {
                   </div>
                 </Link>
               ))}
-          </div>
+            </div>
+          )}
         </div>
       </section>
 
