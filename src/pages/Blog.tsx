@@ -5,39 +5,92 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Clock, Calendar, ArrowRight } from "lucide-react";
 
+const META_TITLE =
+  "Mountain Travel Blog — Hiking Guides, Trekking Tips, Trail Reviews & Tour Advice | HotelMountains.com";
+const META_DESCRIPTION =
+  "Expert mountain travel blog. In-depth hiking guides, multi-day trekking itineraries, ski resort reviews, gear lists, altitude tips and tour advice for the Swiss Alps, Rocky Mountains, Himalayas, Andes, Appalachian Trail, Patagonia and Japanese Alps.";
+const META_KEYWORDS = [
+  "mountain travel blog",
+  "hiking blog",
+  "trekking guides",
+  "mountain hiking tips",
+  "best hiking trails",
+  "trekking itinerary",
+  "altitude sickness tips",
+  "hiking gear list",
+  "ski resort reviews",
+  "mountain photography tips",
+  "swiss alps hiking guide",
+  "appalachian trail guide",
+  "everest base camp tips",
+  "machu picchu trek guide",
+  "patagonia trekking guide",
+  "rocky mountain national park guide",
+].join(", ");
+
+const upsertMeta = (name: string, content: string) => {
+  let meta = document.querySelector(`meta[name="${name}"]`);
+  if (!meta) {
+    meta = document.createElement("meta");
+    meta.setAttribute("name", name);
+    document.head.appendChild(meta);
+  }
+  meta.setAttribute("content", content);
+};
+
 const Blog = () => {
   useEffect(() => {
-    document.title = "Mountain Travel Blog — Hiking Guides, Trail Tips & Tour Reviews | HotelMountains.com";
-    const meta = document.querySelector('meta[name="description"]');
-    if (meta) {
-      meta.setAttribute("content", "Read expert mountain travel guides, hiking trail reviews, and adventure tips. Covering the Swiss Alps, Rocky Mountains, Himalayas, Appalachian Trail, and more.");
-    } else {
-      const m = document.createElement("meta");
-      m.name = "description";
-      m.content = "Read expert mountain travel guides, hiking trail reviews, and adventure tips. Covering the Swiss Alps, Rocky Mountains, Himalayas, Appalachian Trail, and more.";
-      document.head.appendChild(m);
-    }
+    document.title = META_TITLE;
+    upsertMeta("description", META_DESCRIPTION);
+    upsertMeta("keywords", META_KEYWORDS);
 
-    // Blog CollectionPage schema
-    const script = document.createElement("script");
-    script.type = "application/ld+json";
-    script.textContent = JSON.stringify({
+    const scripts: HTMLScriptElement[] = [];
+
+    // CollectionPage schema with rich item list of articles
+    const collection = document.createElement("script");
+    collection.type = "application/ld+json";
+    collection.textContent = JSON.stringify({
       "@context": "https://schema.org",
       "@type": "CollectionPage",
       name: "Mountain Travel Blog",
-      description: "Expert mountain travel guides, hiking trail reviews, and adventure tips.",
+      description: META_DESCRIPTION,
       url: "https://hotelmountains.com/blog",
       publisher: {
         "@type": "Organization",
         name: "HotelMountains.com",
-        url: "https://hotelmountains.com"
-      }
+        url: "https://hotelmountains.com",
+        logo: "https://hotelmountains.com/favicon.png",
+      },
+      mainEntity: {
+        "@type": "ItemList",
+        itemListElement: blogArticles.map((a, i) => ({
+          "@type": "ListItem",
+          position: i + 1,
+          url: `https://hotelmountains.com/blog/${a.slug}`,
+          name: a.title,
+        })),
+      },
     });
-    document.head.appendChild(script);
+    document.head.appendChild(collection);
+    scripts.push(collection);
+
+    // Breadcrumb schema
+    const breadcrumb = document.createElement("script");
+    breadcrumb.type = "application/ld+json";
+    breadcrumb.textContent = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: "https://hotelmountains.com/" },
+        { "@type": "ListItem", position: 2, name: "Blog", item: "https://hotelmountains.com/blog" },
+      ],
+    });
+    document.head.appendChild(breadcrumb);
+    scripts.push(breadcrumb);
 
     window.scrollTo(0, 0);
     return () => {
-      document.head.removeChild(script);
+      scripts.forEach((s) => s.parentNode && s.parentNode.removeChild(s));
     };
   }, []);
 
@@ -46,15 +99,39 @@ const Blog = () => {
       <Navbar />
       <main className="pt-24 pb-20">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-14">
+          <div className="text-center mb-10">
             <span className="text-secondary font-semibold text-sm uppercase tracking-widest">
               Travel Journal
             </span>
             <h1 className="font-heading text-4xl md:text-5xl font-bold text-foreground mt-3 mb-4">
-              Mountain Travel Guides
+              Mountain Travel Guides & Trekking Tips
             </h1>
-            <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-              In-depth guides and tips for exploring the world's greatest mountain destinations.
+            <p className="text-muted-foreground max-w-3xl mx-auto text-lg">
+              In-depth guides for exploring the world's greatest mountain ranges. From the granite
+              walls of Patagonia and the high passes of the Himalayas to the larch forests of the
+              Swiss Alps and the Blue Ridge of the Appalachian Mountains — practical itineraries,
+              gear advice, altitude tips and seasonal recommendations from real mountain travel.
+            </p>
+          </div>
+
+          {/* SEO content block: long-tail topical authority */}
+          <div className="max-w-3xl mx-auto bg-card border border-border rounded-xl p-6 md:p-8 mb-14">
+            <h2 className="font-heading text-xl font-bold text-foreground mb-3">
+              What you'll find on the HotelMountains travel blog
+            </h2>
+            <p className="text-sm text-muted-foreground leading-relaxed mb-3">
+              Our mountain travel blog is built around real, on-the-ground experience in the
+              world's most rewarding ranges. Whether you're planning a first guided hike in the
+              Bernese Oberland, comparing the Annapurna Circuit with the Manaslu Circuit, choosing
+              between Banff and Jasper, or timing your trip to the Great Smoky Mountains for peak
+              fall foliage, you'll find honest, detailed advice here.
+            </p>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              Topics regularly covered include: best time to visit each mountain region, beginner
+              vs. advanced trekking routes, ski resort comparisons, altitude acclimatization, layered
+              clothing systems, choosing between mountain huts and lodges, scenic train journeys
+              like the Glacier Express and Bernina Express, photography spots, and how to combine
+              flights, hotels and tours into a single mountain itinerary.
             </p>
           </div>
 
