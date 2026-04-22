@@ -1,9 +1,43 @@
 import { Mountain } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const PARTNER = "partner_id=0IQTGX8&utm_medium=online_publisher";
 
 const Footer = () => {
+  const { t } = useTranslation();
+
+  const destinations = [
+    { name: "Swiss Alps", slug: "swiss-alps" },
+    { name: "Rocky Mountains", slug: "rocky-mountains" },
+    { name: "Appalachian Mountains", slug: "appalachian-mountains" },
+    { name: "Himalayas", slug: "himalayas" },
+    { name: "Andes Mountains", slug: "andes-mountains" },
+    { name: "Japanese Alps", slug: "japanese-alps" },
+  ];
+
+  const company = [
+    { name: t("footer.about"), path: "/about" },
+    { name: t("footer.contact"), path: "/contact" },
+    { name: t("footer.blog"), path: "/blog" },
+  ];
+
+  const activities = [
+    { key: "actHiking", q: "Mountain Hiking" },
+    { key: "actSkiing", q: "Skiing" },
+    { key: "actPhoto", q: "Photography Tours" },
+    { key: "actGuided", q: "Guided Expeditions" },
+  ] as const;
+
+  const legal = [
+    { name: t("footer.privacy"), path: "/privacy-policy" },
+    { name: t("footer.terms"), path: "/terms-of-service" },
+    { name: t("footer.cookies"), path: "/cookie-policy" },
+    { name: t("footer.dmca"), path: "/dmca" },
+    { name: t("footer.legalNotice"), path: "/legal-notice" },
+    { name: t("footer.parents"), path: "/parents-info" },
+  ];
+
   return (
     <footer className="bg-foreground py-16">
       <div className="container mx-auto px-4">
@@ -16,22 +50,16 @@ const Footer = () => {
               </span>
             </div>
             <p className="text-background/60 text-sm leading-relaxed">
-              Your ultimate guide to mountain travel worldwide. Discover peaks, trails, and adventures
-              across every continent.
+              {t("footer.tagline")}
             </p>
           </div>
 
           <div>
-            <h4 className="font-heading font-bold text-background mb-4">Destinations</h4>
+            <h4 className="font-heading font-bold text-background mb-4">
+              {t("footer.destinations")}
+            </h4>
             <ul className="space-y-2 text-sm">
-              {[
-                { name: "Swiss Alps", slug: "swiss-alps" },
-                { name: "Rocky Mountains", slug: "rocky-mountains" },
-                { name: "Appalachian Mountains", slug: "appalachian-mountains" },
-                { name: "Himalayas", slug: "himalayas" },
-                { name: "Andes Mountains", slug: "andes-mountains" },
-                { name: "Japanese Alps", slug: "japanese-alps" },
-              ].map((dest) => (
+              {destinations.map((dest) => (
                 <li key={dest.slug}>
                   <Link
                     to={`/destination/${dest.slug}`}
@@ -45,13 +73,11 @@ const Footer = () => {
           </div>
 
           <div>
-            <h4 className="font-heading font-bold text-background mb-4">Company</h4>
+            <h4 className="font-heading font-bold text-background mb-4">
+              {t("footer.company")}
+            </h4>
             <ul className="space-y-2 text-sm">
-              {[
-                { name: "About Us", path: "/about" },
-                { name: "Contact", path: "/contact" },
-                { name: "Blog", path: "/blog" },
-              ].map((item) => (
+              {company.map((item) => (
                 <li key={item.path}>
                   <Link
                     to={item.path}
@@ -63,36 +89,31 @@ const Footer = () => {
               ))}
             </ul>
 
-            <h4 className="font-heading font-bold text-background mb-4 mt-8">Activities</h4>
+            <h4 className="font-heading font-bold text-background mb-4 mt-8">
+              {t("footer.activities")}
+            </h4>
             <ul className="space-y-2 text-sm">
-              {["Mountain Hiking", "Skiing", "Photography Tours", "Guided Expeditions"].map(
-                (act) => (
-                  <li key={act}>
-                    <a
-                      href={`https://www.getyourguide.com/s/?q=${encodeURIComponent(act)}&${PARTNER}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-background/60 hover:text-primary transition-colors"
-                    >
-                      {act}
-                    </a>
-                  </li>
-                )
-              )}
+              {activities.map((act) => (
+                <li key={act.key}>
+                  <a
+                    href={`https://www.getyourguide.com/s/?q=${encodeURIComponent(act.q)}&${PARTNER}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-background/60 hover:text-primary transition-colors"
+                  >
+                    {t(`footer.${act.key}`)}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
 
           <div>
-            <h4 className="font-heading font-bold text-background mb-4">Legal</h4>
+            <h4 className="font-heading font-bold text-background mb-4">
+              {t("footer.legal")}
+            </h4>
             <ul className="space-y-2 text-sm">
-              {[
-                { name: "Privacy Policy", path: "/privacy-policy" },
-                { name: "Terms of Service", path: "/terms-of-service" },
-                { name: "Cookie Policy", path: "/cookie-policy" },
-                { name: "DMCA", path: "/dmca" },
-                { name: "Legal Notice", path: "/legal-notice" },
-                { name: "Parents Info", path: "/parents-info" },
-              ].map((item) => (
+              {legal.map((item) => (
                 <li key={item.path}>
                   <Link
                     to={item.path}
@@ -108,10 +129,10 @@ const Footer = () => {
 
         <div className="border-t border-background/10 mt-12 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-background/40 text-sm">
-            © {new Date().getFullYear()} HotelMountains.com — All rights reserved
+            © {new Date().getFullYear()} HotelMountains.com — {t("footer.rights")}
           </p>
           <p className="text-background/30 text-xs">
-            Tours powered by GetYourGuide. We may earn a commission at no extra cost to you.
+            {t("footer.disclosure")}
           </p>
         </div>
       </div>
