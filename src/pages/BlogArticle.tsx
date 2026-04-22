@@ -1,9 +1,10 @@
 import { useEffect } from "react";
 import { useParams, Link, Navigate } from "react-router-dom";
 import { blogArticles } from "@/data/blogArticles";
+import { destinations } from "@/data/destinations";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { ArrowLeft, Clock, Calendar, MapPin } from "lucide-react";
+import { ArrowLeft, Clock, Calendar, MapPin, Mountain, ExternalLink, Compass } from "lucide-react";
 
 const BlogArticle = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -99,6 +100,27 @@ const BlogArticle = () => {
   const relatedArticles = blogArticles
     .filter((a) => a.slug !== slug)
     .slice(0, 3);
+
+  // Match destinations whose first-word name appears in the article category or title
+  const relatedDestinations = destinations
+    .filter((d) => {
+      const key = d.name.toLowerCase().split(" ")[0];
+      return (
+        article!.category.toLowerCase().includes(key) ||
+        article!.title.toLowerCase().includes(key)
+      );
+    })
+    .slice(0, 3);
+
+  const destinationLinks =
+    relatedDestinations.length > 0 ? relatedDestinations : destinations.slice(0, 3);
+
+  const moreTourQueries = [
+    { label: `${article!.category} Hiking Tours`, q: `${article!.category} hiking` },
+    { label: `${article!.category} Day Trips`, q: `${article!.category} day trip` },
+    { label: `${article!.category} Guided Treks`, q: `${article!.category} trek` },
+    { label: `${article!.category} Photography Tours`, q: `${article!.category} photography` },
+  ];
 
   return (
     <div className="min-h-screen">
