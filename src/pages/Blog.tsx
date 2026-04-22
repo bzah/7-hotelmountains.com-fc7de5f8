@@ -1,8 +1,10 @@
-import { useEffect } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { blogArticles } from "@/data/blogArticles";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import FilterChips from "@/components/FilterChips";
 import { Clock, Calendar, ArrowRight } from "lucide-react";
 import { applySeoUrls } from "@/lib/seo";
 
