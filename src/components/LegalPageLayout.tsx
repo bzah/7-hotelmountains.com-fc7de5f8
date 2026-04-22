@@ -1,6 +1,8 @@
 import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { applySeoUrls } from "@/lib/seo";
 
 interface LegalPageLayoutProps {
   title: string;
@@ -11,6 +13,7 @@ interface LegalPageLayoutProps {
 }
 
 const LegalPageLayout = ({ title, metaTitle, metaDescription, children, jsonLd }: LegalPageLayoutProps) => {
+  const { pathname } = useLocation();
   useEffect(() => {
     document.title = metaTitle;
     const meta = document.querySelector('meta[name="description"]');
@@ -22,6 +25,7 @@ const LegalPageLayout = ({ title, metaTitle, metaDescription, children, jsonLd }
       m.content = metaDescription;
       document.head.appendChild(m);
     }
+    applySeoUrls(pathname);
     window.scrollTo(0, 0);
 
     let script: HTMLScriptElement | null = null;
@@ -35,7 +39,7 @@ const LegalPageLayout = ({ title, metaTitle, metaDescription, children, jsonLd }
     return () => {
       if (script) document.head.removeChild(script);
     };
-  }, [metaTitle, metaDescription, jsonLd]);
+  }, [metaTitle, metaDescription, jsonLd, pathname]);
 
   return (
     <div className="min-h-screen">
