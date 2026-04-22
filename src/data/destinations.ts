@@ -81,6 +81,8 @@ export const destinations: Destination[] = [
       "best time to visit swiss alps", "swiss alps weather", "swiss alps map", "alps hiking trails"
     ]
   },
+  {
+    slug: "rocky-mountains",
     name: "Rocky Mountains",
     country: "USA & Canada",
     emoji: "🏔️",
@@ -136,6 +138,8 @@ export const destinations: Destination[] = [
       "canadian rockies", "rocky mountain time", "colorado 14ers", "mount elbert", "rockies hiking trails"
     ]
   },
+  {
+    slug: "appalachian-mountains",
     name: "Appalachian Mountains",
     country: "Eastern USA",
     emoji: "🌲",
@@ -191,6 +195,8 @@ export const destinations: Destination[] = [
       "fall foliage appalachian", "appalachian mountains map", "eastern usa mountains", "best appalachian hikes"
     ]
   },
+  {
+    slug: "himalayas",
     name: "Himalayas",
     country: "Nepal, India & Tibet",
     emoji: "🏔️",
@@ -246,6 +252,8 @@ export const destinations: Destination[] = [
       "trekking nepal cost", "best trek in nepal for beginners", "himalayan tours", "himalayan adventure travel"
     ]
   },
+  {
+    slug: "andes-mountains",
     name: "Andes Mountains",
     country: "South America",
     emoji: "🦙",
@@ -301,6 +309,8 @@ export const destinations: Destination[] = [
       "machu picchu altitude", "patagonia best time to visit", "andes peru", "andes chile", "andes argentina"
     ]
   },
+  {
+    slug: "japanese-alps",
     name: "Japanese Alps",
     country: "Japan",
     emoji: "🇯🇵",
