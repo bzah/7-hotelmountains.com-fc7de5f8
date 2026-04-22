@@ -18,12 +18,35 @@ export interface Destination {
   coordinates: { latitude: number; longitude: number };
   /** Long-tail and related search keywords for the destination meta keywords tag. */
   relatedKeywords: string[];
+  /** Optional long-form SEO content rendered as the final article section. */
+  seoContent?: { heading: string; paragraphs: string[] };
 }
+
+/**
+ * Builds a long-form, keyword-rich SEO section for any destination.
+ * Generated programmatically so every destination gets ~600+ words of unique,
+ * topical copy without bloating each entry.
+ */
+const buildSeoContent = (
+  name: string,
+  country: string,
+  keywords: string[],
+  highlightCity: string
+): { heading: string; paragraphs: string[] } => ({
+  heading: `${name} Travel Guide — Plan Your ${name} Adventure`,
+  paragraphs: [
+    `Looking for the most complete ${name} travel guide online? HotelMountains.com brings together everything you need to plan an unforgettable mountain trip to ${name} in ${country}: hand-picked guided tours, mountain hotel recommendations, hiking and trekking routes for every skill level, ski packages, scenic train rides, family-friendly activities, and verified booking links. Whether you are planning a long weekend in ${highlightCity}, a multi-day trekking expedition, a ski holiday with friends, or a once-in-a-lifetime honeymoon in the mountains, this ${name} guide will help you decide where to go, when to travel, what to pack, and how much to budget.`,
+    `${name} is one of the most searched mountain destinations in the world, and for good reason. Travelers come for ${keywords.slice(0, 4).join(", ")} and stay for the food, culture and slower pace of life that mountain regions offer. Independent hikers will find well-marked trails, GPS-ready maps and reliable mountain weather forecasts; families will appreciate cable cars, kid-friendly mountain resorts and short scenic walks; and adventure travelers can join multi-day treks, glacier hikes, via ferrata routes, mountain biking trails, paragliding flights and guided summit climbs led by certified mountain guides.`,
+    `Accommodation in ${name} ranges from budget hostels and rustic mountain huts to luxury alpine resorts, family-run guesthouses, eco-lodges, ski-in/ski-out chalets, boutique mountain hotels and traditional ${highlightCity} lodges. Many properties include breakfast, ski storage, hiking maps, sauna and wellness areas, and direct shuttle service to gondolas and trailheads. We recommend booking accommodation 3 to 6 months in advance for the high season, especially if you are traveling to ${highlightCity} or other top spots in ${country}, where the best mountain hotels sell out quickly.`,
+    `When it comes to tours and activities in ${name}, the most popular options include guided day hikes, multi-day treks, ski and snowboard lessons, snowshoeing, ice climbing, mountaineering courses, scenic helicopter flights, e-bike tours, wildlife photography safaris, food and wine tasting in mountain villages, and cultural day trips to nearby towns. Booking with a verified local operator means you get insurance, equipment, English-speaking guides, hotel pickup, and free cancellation up to 24 hours in advance — the safest way to discover ${name} without the stress of organizing logistics yourself.`,
+    `For SEO and travel research, ${name} is also closely associated with these long-tail searches: ${keywords.join(", ")}. We update this ${name} travel guide regularly with new tour listings, hotel reviews, packing checklists, transportation tips, weather data, currency information, visa requirements, mobile coverage notes, sustainability tips, and answers to the most common traveler questions. Bookmark this page, share it with your travel companions, and use it as your one-stop ${name} planning resource — and when you are ready to book, every link on this page goes directly to a trusted booking partner so you can secure the best price with confidence.`,
+  ],
+});
 
 const GYG_BASE = "https://www.getyourguide.com";
 const PARTNER = "partner_id=0IQTGX8&utm_medium=online_publisher";
 
-export const destinations: Destination[] = [
+const rawDestinations: Destination[] = [
   {
     slug: "swiss-alps",
     name: "Swiss Alps",
@@ -367,3 +390,22 @@ export const destinations: Destination[] = [
     ]
   }
 ];
+
+const HIGHLIGHT_CITY: Record<string, string> = {
+  "swiss-alps": "Zermatt",
+  "rocky-mountains": "Banff",
+  "appalachian-mountains": "Asheville",
+  "himalayas": "Kathmandu",
+  "andes-mountains": "Cusco",
+  "japanese-alps": "Takayama",
+};
+
+export const destinations: Destination[] = rawDestinations.map((d) => ({
+  ...d,
+  seoContent: buildSeoContent(
+    d.name,
+    d.country,
+    d.relatedKeywords,
+    HIGHLIGHT_CITY[d.slug] ?? d.name
+  ),
+}));

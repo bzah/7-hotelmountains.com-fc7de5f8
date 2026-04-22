@@ -439,6 +439,20 @@ const DestinationPage = () => {
           </div>
         </section>
 
+        {/* Long-form SEO content (auto-generated keyword-rich travel guide) */}
+        {destination.seoContent && (
+          <section className="mt-14 mb-4">
+            <h2 className="font-heading text-2xl font-bold text-foreground mb-5">
+              {destination.seoContent.heading}
+            </h2>
+            {destination.seoContent.paragraphs.map((p, i) => (
+              <p key={i} className="text-muted-foreground leading-relaxed mb-4">
+                {p}
+              </p>
+            ))}
+          </section>
+        )}
+
         {/* SEO content: Why visit & related searches (long-tail keyword block) */}
         <section className="mt-14 mb-4 bg-muted/30 rounded-xl p-6 md:p-8 border border-border">
           <h2 className="font-heading text-2xl font-bold text-foreground mb-4">
@@ -579,7 +593,7 @@ const DestinationPage = () => {
           <div className="mb-8 flex justify-center">
             <FilterChips
               label={t("filters.filterByCountry")}
-              options={otherCountries}
+              options={otherCountries as string[]}
               value={otherCountry}
               onChange={setOtherCountry}
               countMap={otherCountMap}
