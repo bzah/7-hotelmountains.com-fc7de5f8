@@ -178,6 +178,27 @@ const postXml = urlset(
   }))
 );
 
+/* -------------------- sitemap.xml (flat, all routes) -------------------- */
+/**
+ * Single combined sitemap that mirrors EVERY route declared in
+ * src/App.tsx (static pages + /destination/:slug + /blog/:slug).
+ * Useful for tools that don't follow sitemap indexes.
+ */
+const allEntries = [
+  ...pages.map((p) => ({ loc: `${SITE}${p.path}`, lastmod: NOW_ISO })),
+  ...destinations.map((d) => ({
+    loc: `${SITE}/destination/${d.slug}`,
+    lastmod: NOW_ISO,
+    images: [d.image],
+  })),
+  ...posts.map((p) => ({
+    loc: `${SITE}/blog/${p.slug}`,
+    lastmod: dateToIso(p.date),
+    images: [p.image],
+  })),
+];
+const flatXml = urlset(allEntries);
+
 /* -------------------- sitemap_index.xml -------------------- */
 /**
  * Rank Math sitemap_index lists child sitemaps with their own lastmod.
@@ -206,6 +227,7 @@ const sitemapIndex = `${xmlHead}
 /* -------------------- write -------------------- */
 
 const outputs = [
+  ["sitemap.xml", flatXml],
   ["sitemap_index.xml", sitemapIndex],
   ["page-sitemap.xml", pageXml],
   ["destination-sitemap.xml", destXml],

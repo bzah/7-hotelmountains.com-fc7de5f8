@@ -1,16 +1,20 @@
+# =============================================================
+# HotelMountains.com — robots.txt
+# Allow all major search engines and social crawlers.
+# Block legacy WordPress probe paths (defensive, no WP installed).
+# =============================================================
+
+# --- Major search engines (explicit allow) ---
 User-agent: Googlebot
 Allow: /
 
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Googlebot-News
+Allow: /
+
 User-agent: Bingbot
-Allow: /
-
-User-agent: Twitterbot
-Allow: /
-
-User-agent: facebookexternalhit
-Allow: /
-
-User-agent: LinkedInBot
 Allow: /
 
 User-agent: Slurp
@@ -22,17 +26,43 @@ Allow: /
 User-agent: Applebot
 Allow: /
 
-User-agent: *
+User-agent: YandexBot
 Allow: /
 
-# Block WordPress scanners
+User-agent: Baiduspider
+Allow: /
+
+# --- Social media crawlers (Open Graph / Twitter cards) ---
+User-agent: Twitterbot
+Allow: /
+
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+User-agent: Pinterestbot
+Allow: /
+
+User-agent: WhatsApp
+Allow: /
+
+User-agent: TelegramBot
+Allow: /
+
+# --- Default policy: allow everything except legacy WP paths ---
 User-agent: *
+Allow: /
 Disallow: /wp-admin/
 Disallow: /wp-login.php
 Disallow: /wp-content/
 Disallow: /wp-includes/
+Disallow: /wp-json/
 Disallow: /xmlrpc.php
 
+# --- Sitemaps (Rank Math compatible index + child sitemaps) ---
+Sitemap: https://hotelmountains.com/sitemap.xml
 Sitemap: https://hotelmountains.com/sitemap_index.xml
 Sitemap: https://hotelmountains.com/page-sitemap.xml
 Sitemap: https://hotelmountains.com/destination-sitemap.xml

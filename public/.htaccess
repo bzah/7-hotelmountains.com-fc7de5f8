@@ -1,59 +1,112 @@
-# ============================================
-# HotelMountains.com — Apache .htaccess
-# For Hostinger / Apache fallback (if used)
-# ============================================
+# ==========================================================
+# HotelMountains.com — Apache .htaccess (Hostinger / shared)
+# Goals:
+#   1. Force HTTPS + canonical (non-www) host
+#   2. Strip trailing slash (except root)
+#   3. SPA fallback → React Router gets every non-file URL
+#   4. 410 Gone for legacy WordPress probes
+#   5. Correct MIME types for sitemap XML/XSL
+#   6. Hardening + caching
+# ==========================================================
+
+# Disable directory listings (security)
+Options -Indexes
 
 RewriteEngine On
+RewriteBase /
 
-# --- Force HTTPS ---
+# ----------------------------------------------------------
+# 1. Force HTTPS
+# ----------------------------------------------------------
 RewriteCond %{HTTPS} off
 RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-# --- Remove www ---
-RewriteCond %{HTTP_HOST} ^www\.hotelmountains\.com [NC]
+# ----------------------------------------------------------
+# 2. Remove www. → canonical hotelmountains.com
+# ----------------------------------------------------------
+RewriteCond %{HTTP_HOST} ^www\.hotelmountains\.com$ [NC]
 RewriteRule ^ https://hotelmountains.com%{REQUEST_URI} [L,R=301]
 
-# --- Remove trailing slash (except root /) ---
+# ----------------------------------------------------------
+# 3. Remove trailing slash (except root /)
+#    Skip if the URI is an actual directory.
+# ----------------------------------------------------------
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_URI} (.+)/$
-RewriteRule ^ %1 [L,R=301]
+RewriteCond %{REQUEST_URI} ^.+/$
+RewriteRule ^(.+)/$ /$1 [L,R=301]
 
-# --- Block old WordPress URLs with 410 Gone ---
-RewriteRule ^wp-admin       - [G,L]
-RewriteRule ^wp-login\.php  - [G,L]
-RewriteRule ^wp-content     - [G,L]
-RewriteRule ^wp-includes    - [G,L]
-RewriteRule ^xmlrpc\.php    - [G,L]
-RewriteRule ^wp-json        - [G,L]
-RewriteRule ^wp-cron\.php   - [G,L]
+# ----------------------------------------------------------
+# 4. Block legacy WordPress paths with 410 Gone
+#    Tells search engines these URLs are permanently gone
+#    so they drop them from the index faster than 404.
+# ----------------------------------------------------------
+RewriteRule ^wp-admin(/|$)     - [G,L]
+RewriteRule ^wp-login\.php$    - [G,L]
+RewriteRule ^wp-content(/|$)   - [G,L]
+RewriteRule ^wp-includes(/|$)  - [G,L]
+RewriteRule ^wp-json(/|$)      - [G,L]
+RewriteRule ^wp-cron\.php$     - [G,L]
+RewriteRule ^xmlrpc\.php$      - [G,L]
 
-# --- Serve sitemap XML files with correct MIME type ---
+# ----------------------------------------------------------
+# 5. Correct MIME types for sitemaps and stylesheet
+# ----------------------------------------------------------
 <IfModule mod_mime.c>
   AddType application/xml .xml
-  AddType text/xsl .xsl
+  AddType text/xsl        .xsl
+  AddType image/svg+xml   .svg
+  AddType image/webp      .webp
+  AddType application/manifest+json .webmanifest
 </IfModule>
 
-# --- SPA Fallback: serve index.html for all non-file routes ---
-# (XML/XSL real files are matched by !-f and skipped, so they serve directly.)
+# ----------------------------------------------------------
+# 6. SPA fallback — serve index.html for any non-file route
+#    Must come AFTER the redirect rules above.
+#    Real files (XML, XSL, JS, CSS, images) bypass via !-f.
+# ----------------------------------------------------------
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^ /index.html [L]
 
-# --- Security headers ---
+# ----------------------------------------------------------
+# 7. Security headers
+# ----------------------------------------------------------
 <IfModule mod_headers.c>
-  Header set X-Content-Type-Options "nosniff"
-  Header set X-Frame-Options "SAMEORIGIN"
-  Header set Referrer-Policy "strict-origin-when-cross-origin"
+  Header set X-Content-Type-Options       "nosniff"
+  Header set X-Frame-Options              "SAMEORIGIN"
+  Header set Referrer-Policy              "strict-origin-when-cross-origin"
+  Header set Permissions-Policy           "geolocation=(), microphone=(), camera=()"
+  Header set Strict-Transport-Security    "max-age=31536000; includeSubDomains; preload" env=HTTPS
+
+  # Prevent caching of the SPA shell so deploys are picked up immediately
+  <FilesMatch "\.(html)$">
+    Header set Cache-Control "no-cache, no-store, must-revalidate"
+  </FilesMatch>
 </IfModule>
 
-# --- Cache static assets ---
+# ----------------------------------------------------------
+# 8. Long cache for static assets (hashed filenames)
+# ----------------------------------------------------------
 <IfModule mod_expires.c>
   ExpiresActive On
-  ExpiresByType image/png "access plus 1 year"
-  ExpiresByType image/jpeg "access plus 1 year"
-  ExpiresByType image/webp "access plus 1 year"
-  ExpiresByType image/svg+xml "access plus 1 year"
-  ExpiresByType text/css "access plus 1 month"
+  ExpiresByType image/png             "access plus 1 year"
+  ExpiresByType image/jpeg            "access plus 1 year"
+  ExpiresByType image/webp            "access plus 1 year"
+  ExpiresByType image/svg+xml         "access plus 1 year"
+  ExpiresByType image/x-icon          "access plus 1 year"
+  ExpiresByType font/woff2            "access plus 1 year"
+  ExpiresByType text/css              "access plus 1 month"
   ExpiresByType application/javascript "access plus 1 month"
   ExpiresByType application/x-javascript "access plus 1 month"
+  ExpiresByType application/xml       "access plus 1 hour"
+</IfModule>
+
+# ----------------------------------------------------------
+# 9. Gzip compression
+# ----------------------------------------------------------
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript
+  AddOutputFilterByType DEFLATE application/javascript application/x-javascript
+  AddOutputFilterByType DEFLATE application/xml application/json application/rss+xml
+  AddOutputFilterByType DEFLATE image/svg+xml
 </IfModule>
