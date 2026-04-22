@@ -15,6 +15,9 @@ import CookiePolicy from "./pages/CookiePolicy.tsx";
 import DMCA from "./pages/DMCA.tsx";
 import LegalNotice from "./pages/LegalNotice.tsx";
 import ParentsInfo from "./pages/ParentsInfo.tsx";
+import MountainHotels from "./pages/MountainHotels.tsx";
+import HikingTours from "./pages/HikingTours.tsx";
+import SkiTrips from "./pages/SkiTrips.tsx";
 import NotFound from "./pages/NotFound.tsx";
 
 const queryClient = new QueryClient();
@@ -38,6 +41,9 @@ const App = () => (
           <Route path="/dmca" element={<DMCA />} />
           <Route path="/legal-notice" element={<LegalNotice />} />
           <Route path="/parents-info" element={<ParentsInfo />} />
+          <Route path="/mountain-hotels" element={<MountainHotels />} />
+          <Route path="/hiking-tours" element={<HikingTours />} />
+          <Route path="/ski-trips" element={<SkiTrips />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

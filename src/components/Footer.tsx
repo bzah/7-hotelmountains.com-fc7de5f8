@@ -23,9 +23,9 @@ const Footer = () => {
   ];
 
   const activities = [
-    { key: "actHiking", q: "Mountain Hiking" },
-    { key: "actSkiing", q: "Skiing" },
-    { key: "actPhoto", q: "Photography Tours" },
+    { key: "actHiking", q: "Mountain Hiking", route: "/hiking-tours" },
+    { key: "actSkiing", q: "Skiing", route: "/ski-trips" },
+    { key: "actHotels", q: "Mountain Hotels", route: "/mountain-hotels" },
     { key: "actGuided", q: "Guided Expeditions" },
   ] as const;
 
@@ -95,14 +95,23 @@ const Footer = () => {
             <ul className="space-y-2 text-sm">
               {activities.map((act) => (
                 <li key={act.key}>
-                  <a
-                    href={`https://www.getyourguide.com/s/?q=${encodeURIComponent(act.q)}&${PARTNER}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-background/60 hover:text-primary transition-colors"
-                  >
-                    {t(`footer.${act.key}`)}
-                  </a>
+                  {"route" in act && act.route ? (
+                    <Link
+                      to={act.route}
+                      className="text-background/60 hover:text-primary transition-colors"
+                    >
+                      {t(`footer.${act.key}`)}
+                    </Link>
+                  ) : (
+                    <a
+                      href={`https://www.getyourguide.com/s/?q=${encodeURIComponent(act.q)}&${PARTNER}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-background/60 hover:text-primary transition-colors"
+                    >
+                      {t(`footer.${act.key}`)}
+                    </a>
+                  )}
                 </li>
               ))}
             </ul>
