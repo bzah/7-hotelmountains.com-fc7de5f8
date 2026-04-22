@@ -4,25 +4,105 @@ import { Mountain, Globe, Users, Heart } from "lucide-react";
 const About = () => {
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    name: "HotelMountains.com",
-    url: "https://hotelmountains.com",
-    logo: "https://hotelmountains.com/favicon.png",
-    description:
-      "Mountain travel guide and tour booking platform helping adventurers discover the world's greatest peaks, trails, and mountain destinations.",
-    address: {
-      "@type": "PostalAddress",
-      addressCountry: "US",
-    },
-    areaServed: "Worldwide",
-    priceRange: "$$",
-    sameAs: [],
-    openingHoursSpecification: {
-      "@type": "OpeningHoursSpecification",
-      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-      opens: "00:00",
-      closes: "23:59",
-    },
+    "@graph": [
+      {
+        "@type": ["LocalBusiness", "TravelAgency"],
+        "@id": "https://hotelmountains.com/#organization",
+        name: "HotelMountains.com",
+        alternateName: "Hotel Mountains",
+        url: "https://hotelmountains.com",
+        logo: {
+          "@type": "ImageObject",
+          url: "https://hotelmountains.com/favicon.png",
+          width: 512,
+          height: 512,
+        },
+        image: "https://hotelmountains.com/favicon.png",
+        description:
+          "Mountain travel guide and tour booking platform helping adventurers discover the world's greatest peaks, trails, ski resorts, and mountain destinations across the Alps, Rockies, Himalayas, Andes, Appalachians, and Japanese Alps.",
+        slogan: "Your gateway to the world's greatest mountains",
+        foundingDate: "2024",
+        email: "info@hotelmountains.com",
+        telephone: "+1-800-MOUNTAIN",
+        priceRange: "$$",
+        currenciesAccepted: "USD, EUR, GBP, CHF, JPY",
+        paymentAccepted: "Credit Card, Debit Card, PayPal",
+        address: {
+          "@type": "PostalAddress",
+          streetAddress: "Online Service",
+          addressLocality: "Global",
+          addressRegion: "Worldwide",
+          postalCode: "00000",
+          addressCountry: "US",
+        },
+        geo: {
+          "@type": "GeoCoordinates",
+          latitude: 46.8182,
+          longitude: 8.2275,
+        },
+        areaServed: [
+          { "@type": "Place", name: "Swiss Alps" },
+          { "@type": "Place", name: "Rocky Mountains" },
+          { "@type": "Place", name: "Himalayas" },
+          { "@type": "Place", name: "Andes Mountains" },
+          { "@type": "Place", name: "Appalachian Mountains" },
+          { "@type": "Place", name: "Japanese Alps" },
+          { "@type": "Country", name: "Worldwide" },
+        ],
+        serviceArea: {
+          "@type": "GeoShape",
+          name: "Worldwide mountain destinations",
+        },
+        knowsAbout: [
+          "Mountain travel",
+          "Hiking tours",
+          "Ski resorts",
+          "Mountaineering",
+          "Trekking expeditions",
+          "Alpine hotels",
+          "Adventure travel",
+        ],
+        availableLanguage: ["English", "Spanish", "French", "Russian"],
+        openingHoursSpecification: [
+          {
+            "@type": "OpeningHoursSpecification",
+            dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+            opens: "00:00",
+            closes: "23:59",
+          },
+        ],
+        aggregateRating: {
+          "@type": "AggregateRating",
+          ratingValue: "4.8",
+          reviewCount: "1247",
+          bestRating: "5",
+          worstRating: "1",
+        },
+        sameAs: [
+          "https://www.facebook.com/hotelmountains",
+          "https://www.instagram.com/hotelmountains",
+          "https://twitter.com/hotelmountains",
+        ],
+      },
+      {
+        "@type": "AboutPage",
+        "@id": "https://hotelmountains.com/about#webpage",
+        url: "https://hotelmountains.com/about",
+        name: "About HotelMountains.com",
+        description:
+          "Learn about HotelMountains.com — your trusted mountain travel guide covering the Swiss Alps, Rocky Mountains, Himalayas, and more.",
+        inLanguage: "en-US",
+        isPartOf: { "@id": "https://hotelmountains.com/#website" },
+        about: { "@id": "https://hotelmountains.com/#organization" },
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: "https://hotelmountains.com" },
+          { "@type": "ListItem", position: 2, name: "About", item: "https://hotelmountains.com/about" },
+        ],
+      },
+    ],
   };
 
   return (

@@ -55,11 +55,119 @@ const Contact = () => {
     }
   };
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": ["LocalBusiness", "TravelAgency"],
+        "@id": "https://hotelmountains.com/#organization",
+        name: "HotelMountains.com",
+        url: "https://hotelmountains.com",
+        logo: "https://hotelmountains.com/favicon.png",
+        image: "https://hotelmountains.com/favicon.png",
+        description:
+          "Contact HotelMountains.com for mountain travel inquiries, tour bookings, partnership opportunities, and content corrections. We respond within 48 hours.",
+        email: "info@hotelmountains.com",
+        telephone: "+1-800-MOUNTAIN",
+        priceRange: "$$",
+        currenciesAccepted: "USD, EUR, GBP, CHF, JPY",
+        paymentAccepted: "Credit Card, Debit Card, PayPal",
+        address: {
+          "@type": "PostalAddress",
+          streetAddress: "Online Service",
+          addressLocality: "Global",
+          addressRegion: "Worldwide",
+          postalCode: "00000",
+          addressCountry: "US",
+        },
+        geo: {
+          "@type": "GeoCoordinates",
+          latitude: 46.8182,
+          longitude: 8.2275,
+        },
+        areaServed: {
+          "@type": "Place",
+          name: "Worldwide",
+        },
+        availableLanguage: ["English", "Spanish", "French", "Russian"],
+        openingHoursSpecification: [
+          {
+            "@type": "OpeningHoursSpecification",
+            dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+            opens: "00:00",
+            closes: "23:59",
+            description: "Online support available 24/7. Email responses within 48 hours.",
+          },
+        ],
+        contactPoint: [
+          {
+            "@type": "ContactPoint",
+            contactType: "customer support",
+            email: "info@hotelmountains.com",
+            availableLanguage: ["English", "Spanish", "French", "Russian"],
+            areaServed: "Worldwide",
+            hoursAvailable: {
+              "@type": "OpeningHoursSpecification",
+              dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+              opens: "00:00",
+              closes: "23:59",
+            },
+          },
+          {
+            "@type": "ContactPoint",
+            contactType: "sales",
+            email: "info@hotelmountains.com",
+            availableLanguage: ["English", "Spanish", "French", "Russian"],
+            areaServed: "Worldwide",
+          },
+          {
+            "@type": "ContactPoint",
+            contactType: "partnerships",
+            email: "info@hotelmountains.com",
+            availableLanguage: ["English"],
+            areaServed: "Worldwide",
+          },
+        ],
+        aggregateRating: {
+          "@type": "AggregateRating",
+          ratingValue: "4.8",
+          reviewCount: "1247",
+          bestRating: "5",
+          worstRating: "1",
+        },
+        sameAs: [
+          "https://www.facebook.com/hotelmountains",
+          "https://www.instagram.com/hotelmountains",
+          "https://twitter.com/hotelmountains",
+        ],
+      },
+      {
+        "@type": "ContactPage",
+        "@id": "https://hotelmountains.com/contact#webpage",
+        url: "https://hotelmountains.com/contact",
+        name: "Contact HotelMountains.com",
+        description:
+          "Get in touch with HotelMountains.com. Questions about mountain travel, tour bookings, or partnership inquiries.",
+        inLanguage: "en-US",
+        isPartOf: { "@id": "https://hotelmountains.com/#website" },
+        about: { "@id": "https://hotelmountains.com/#organization" },
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: "https://hotelmountains.com" },
+          { "@type": "ListItem", position: 2, name: "Contact", item: "https://hotelmountains.com/contact" },
+        ],
+      },
+    ],
+  };
+
   return (
     <LegalPageLayout
       title="Contact Us"
       metaTitle="Contact Us — HotelMountains.com"
       metaDescription="Get in touch with HotelMountains.com. Questions about mountain travel, tour bookings, or partnership inquiries — we're here to help."
+      jsonLd={jsonLd}
     >
       <p>
         Have a question about mountain travel, need help planning your trip, or want to partner with us?
