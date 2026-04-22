@@ -1,6 +1,9 @@
+import { useMemo, useState } from "react";
 import { MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { destinations } from "@/data/destinations";
+import FilterChips from "@/components/FilterChips";
 
 const DestinationsSection = () => {
   return (
