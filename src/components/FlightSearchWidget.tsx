@@ -43,22 +43,22 @@ const FlightSearchWidget = () => {
   };
 
   return (
-    <section id="flights" className="py-20 bg-background">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <span className="text-primary font-semibold text-sm uppercase tracking-widest">
+    <section id="flights" className="py-14 md:py-20 bg-background">
+      <div className="container mx-auto px-5 md:px-6">
+        <div className="text-center mb-10 md:mb-12">
+          <span className="text-primary font-semibold text-xs sm:text-sm uppercase tracking-widest">
             Mountain Flights
           </span>
-          <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground mt-3 mb-4">
+          <h2 className="font-heading text-3xl sm:text-4xl font-bold text-foreground mt-3 mb-4">
             Fly to the Mountains
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-muted-foreground max-w-2xl mx-auto text-base md:text-lg">
             Find the cheapest flights to mountain destinations worldwide. Compare airlines and book
             the best deals for your next alpine adventure.
           </p>
         </div>
 
-        <div className="max-w-4xl mx-auto bg-card border border-border rounded-2xl p-6 md:p-8 shadow-elevated">
+        <div className="max-w-4xl mx-auto bg-card border border-border rounded-2xl p-5 sm:p-6 md:p-8 shadow-elevated">
           {/* Trip type toggle */}
           <div className="flex gap-4 mb-6">
             <button
@@ -203,7 +203,7 @@ const FlightSearchWidget = () => {
                   setOrigin(route.from);
                   setDestination(route.to);
                 }}
-                className="text-xs bg-card border border-border px-3 py-1.5 rounded-full text-muted-foreground hover:text-primary hover:border-primary/30 transition-all"
+                className="text-xs sm:text-sm bg-card border border-border px-3 py-2 min-h-[36px] rounded-full text-muted-foreground hover:text-primary hover:border-primary/30 transition-all"
               >
                 {route.label}
               </button>
