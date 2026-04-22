@@ -92,8 +92,9 @@ const DestinationsSection = () => {
                 </span>
               </div>
             </Link>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );
