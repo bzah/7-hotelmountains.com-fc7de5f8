@@ -54,5 +54,11 @@
     "faq": "Часто задаваемые вопросы",
     "relatedGuides": "Похожие гиды",
     "relatedDestinations": "Похожие направления"
+  },
+  "filters": {
+    "all": "Все",
+    "filterByCategory": "Фильтр по категории",
+    "filterByCountry": "Фильтр по стране",
+    "noResults": "Нет результатов, соответствующих фильтру."
   }
 }

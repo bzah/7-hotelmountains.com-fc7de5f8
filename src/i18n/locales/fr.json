@@ -54,5 +54,11 @@
     "faq": "FAQ",
     "relatedGuides": "Guides associés",
     "relatedDestinations": "Destinations associées"
+  },
+  "filters": {
+    "all": "Tous",
+    "filterByCategory": "Filtrer par catégorie",
+    "filterByCountry": "Filtrer par pays",
+    "noResults": "Aucun résultat ne correspond au filtre actuel."
   }
 }
