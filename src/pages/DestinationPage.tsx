@@ -230,9 +230,25 @@ const DestinationPage = () => {
 
   if (!destination) return <Navigate to="/" replace />;
 
+  const pageUrl = `https://hotelmountains.com/destination/${destination.slug}`;
+  const breadcrumbItems = [
+    { label: t("breadcrumb.home"), to: "/" },
+    { label: t("breadcrumb.destinations"), to: "/#destinations" },
+    { label: destination.name },
+  ];
+  const sectionLinks = [
+    { label: t("breadcrumb.overview"), hash: "#overview" },
+    { label: t("breadcrumb.highlights"), hash: "#highlights" },
+    { label: t("breadcrumb.activities"), hash: "#activities" },
+    { label: t("breadcrumb.hotels"), hash: "#hotels" },
+    { label: t("breadcrumb.tours"), hash: "#tours" },
+    { label: t("breadcrumb.faq"), hash: "#faq" },
+  ];
+
   return (
     <div className="min-h-screen">
       <Navbar />
+      <Breadcrumbs items={breadcrumbItems} sections={sectionLinks} pageUrl={pageUrl} />
 
       {/* Hero */}
       <div className="relative h-[55vh] min-h-[420px]">
