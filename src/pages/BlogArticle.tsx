@@ -115,10 +115,24 @@ const BlogArticle = () => {
     { label: `${article!.category} Photography Tours`, q: `${article!.category} photography` },
   ];
 
+  const blogUrl = `https://hotelmountains.com/blog/${article.slug}`;
+  const breadcrumbItems = [
+    { label: t("breadcrumb.home"), to: "/" },
+    { label: t("breadcrumb.blog"), to: "/blog" },
+    { label: article.title },
+  ];
+  const sectionLinks = [
+    { label: t("breadcrumb.article"), hash: "#article" },
+    { label: t("breadcrumb.relatedDestinations"), hash: "#related-destinations" },
+    { label: t("breadcrumb.tours"), hash: "#more-tours" },
+    { label: t("breadcrumb.relatedGuides"), hash: "#related-guides" },
+  ];
+
   return (
     <div className="min-h-screen">
       <Navbar />
-      <main className="pt-20">
+      <Breadcrumbs items={breadcrumbItems} sections={sectionLinks} pageUrl={blogUrl} />
+      <main className="pt-4">
         {/* Hero */}
         <div className="relative h-[50vh] min-h-[400px]">
           <img
