@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { Menu, X, Mountain } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Link } from "react-router-dom";
+import logo from "@/assets/logo.png";
 
 const navLinks = [
   { label: "Home", href: "#" },
@@ -20,7 +21,13 @@ const Navbar = () => {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border/50">
       <div className="container mx-auto flex items-center justify-between h-16 px-4">
         <a href="#" className="flex items-center gap-2">
-          <Mountain className="h-7 w-7 text-primary" />
+          <img
+            src={logo}
+            alt="HotelMountains.com logo"
+            width={32}
+            height={32}
+            className="h-8 w-8 object-contain"
+          />
           <span className="font-heading text-xl font-bold text-foreground">
             Hotel<span className="text-primary">Mountains</span>.com
           </span>
