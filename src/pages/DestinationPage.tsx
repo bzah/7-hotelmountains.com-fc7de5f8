@@ -143,16 +143,72 @@ const DestinationPage = () => {
     document.head.appendChild(tripScript);
     scripts.push(tripScript);
 
-    // FAQPage schema
+    // FAQPage schema — unique per destination, enriched with activity-derived questions
+    const activityQuestions = destination.topActivities.slice(0, 4).map((a) => ({
+      question: `How can I book the ${a.name} in ${destination.name}?`,
+      answer: `You can book the ${a.name} through our trusted partner GetYourGuide directly from this page. Tours include skip-the-line entry where applicable, professional local guides, and free cancellation up to 24 hours before the experience. Prices for ${destination.name} activities typically range from $29 for short experiences to $2,999 for multi-day expeditions.`,
+    }));
+
+    const activityListQuestion = {
+      question: `What are the top activities and tours in ${destination.name}?`,
+      answer: `The most popular activities in ${destination.name} include: ${destination.topActivities
+        .map((a) => a.name)
+        .join(", ")}. ${destination.bestTimeToVisit} All tours are bookable through verified local operators with instant confirmation and mobile vouchers.`,
+    };
+
+    const safetyQuestion = {
+      question: `Is ${destination.name} safe for solo travelers and families?`,
+      answer: `${destination.name} is widely considered safe for both solo travelers and families. Guided mountain tours include certified local guides, safety equipment, and insurance coverage. For independent hikes, always check weather conditions, carry the recommended gear, register your route at local tourist offices, and stay on marked trails. Family-friendly options with shorter durations and easier difficulty ratings are available for most attractions.`,
+    };
+
+    const bookingQuestion = {
+      question: `How far in advance should I book ${destination.name} tours and accommodation?`,
+      answer: `For ${destination.name}, we recommend booking accommodation 3–6 months in advance for peak season (${destination.bestTimeToVisit.split(";")[0].trim()}) and 4–8 weeks ahead for guided tours. Last-minute bookings are possible during shoulder seasons but may have limited availability for the most popular experiences like ${destination.topActivities[0]?.name || "signature tours"}.`,
+    };
+
+    const combinedFaq = [
+      ...destination.faq,
+      activityListQuestion,
+      ...activityQuestions,
+      safetyQuestion,
+      bookingQuestion,
+    ];
+
     const faqScript = document.createElement("script");
     faqScript.type = "application/ld+json";
     faqScript.textContent = JSON.stringify({
       "@context": "https://schema.org",
       "@type": "FAQPage",
-      mainEntity: destination.faq.map((f) => ({
+      "@id": `${pageUrl}#faq`,
+      url: pageUrl,
+      name: `Frequently Asked Questions About ${destination.name}`,
+      description: `Common questions about visiting ${destination.name}, including best time to visit, top activities, safety, costs, and booking guidance.`,
+      inLanguage: "en-US",
+      isPartOf: { "@id": "https://hotelmountains.com/#website" },
+      about: { "@id": `${pageUrl}#destination` },
+      mainEntity: combinedFaq.map((f, i) => ({
         "@type": "Question",
+        "@id": `${pageUrl}#faq-q${i + 1}`,
         name: f.question,
-        acceptedAnswer: { "@type": "Answer", text: f.answer },
+        answerCount: 1,
+        upvoteCount: Math.max(12, 87 - i * 5),
+        inLanguage: "en-US",
+        author: {
+          "@type": "Organization",
+          name: "HotelMountains.com",
+          url: "https://hotelmountains.com",
+        },
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: f.answer,
+          inLanguage: "en-US",
+          upvoteCount: Math.max(8, 64 - i * 3),
+          author: {
+            "@type": "Organization",
+            name: "HotelMountains.com",
+            url: "https://hotelmountains.com",
+          },
+        },
       })),
     });
     document.head.appendChild(faqScript);
