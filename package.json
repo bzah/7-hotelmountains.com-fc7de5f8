@@ -5,12 +5,15 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && npm run validate:schema",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
     "preview": "vite preview",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "validate:schema": "tsx scripts/validate-schema.mjs",
+    "validate:schema:remote": "tsx scripts/validate-schema.mjs --remote --verbose",
+    "prepublish:check": "npm run build && npm run validate:schema:remote"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
