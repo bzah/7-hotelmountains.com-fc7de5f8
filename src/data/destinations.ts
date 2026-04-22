@@ -14,6 +14,10 @@ export interface Destination {
   bestTimeToVisit: string;
   topActivities: { name: string; link: string }[];
   faq: { question: string; answer: string }[];
+  /** Latitude/longitude for TouristDestination JSON-LD GeoCoordinates. */
+  coordinates: { latitude: number; longitude: number };
+  /** Long-tail and related search keywords for the destination meta keywords tag. */
+  relatedKeywords: string[];
 }
 
 const GYG_BASE = "https://www.getyourguide.com";
