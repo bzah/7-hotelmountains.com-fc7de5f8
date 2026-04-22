@@ -33,4 +33,7 @@ Disallow: /wp-content/
 Disallow: /wp-includes/
 Disallow: /xmlrpc.php
 
-Sitemap: https://hotelmountains.com/sitemap.xml
+Sitemap: https://hotelmountains.com/sitemap_index.xml
+Sitemap: https://hotelmountains.com/page-sitemap.xml
+Sitemap: https://hotelmountains.com/destination-sitemap.xml
+Sitemap: https://hotelmountains.com/post-sitemap.xml

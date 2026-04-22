@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="https://hotelmountains.com/sitemap.xsl"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://hotelmountains.com/blog/best-time-to-visit-rocky-mountain-national-park</loc>
+    <lastmod>2026-03-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&amp;q=80</image:loc>
+      <image:title>Best Time to Visit Rocky Mountain National Park: A Complete Seasonal Guide</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://hotelmountains.com/blog/appalachian-trail-guide-for-beginners</loc>
+    <lastmod>2026-03-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&amp;q=80</image:loc>
+      <image:title>Appalachian Trail Guide for Beginners: Everything You Need to Know</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://hotelmountains.com/blog/swiss-alps-hiking-trails-best-routes</loc>
+    <lastmod>2026-03-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1531366936337-7c912a4589a7?w=800&amp;q=80</image:loc>
+      <image:title>10 Best Hiking Trails in the Swiss Alps for Every Skill Level</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://hotelmountains.com/blog/himalayan-trekking-guide-nepal</loc>
+    <lastmod>2026-03-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99?w=800&amp;q=80</image:loc>
+      <image:title>Himalayan Trekking Guide: Best Treks in Nepal for First-Timers</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://hotelmountains.com/blog/mountain-time-zone-guide-what-states</loc>
+    <lastmod>2026-03-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&amp;q=80</image:loc>
+      <image:title>Mountain Time Zone Explained: What States Are in Mountain Time?</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://hotelmountains.com/blog/blue-ridge-mountains-weekend-getaway</loc>
+    <lastmod>2026-02-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=800&amp;q=80</image:loc>
+      <image:title>Blue Ridge Mountains Weekend Getaway: The Perfect 3-Day Itinerary</image:title>
+    </image:image>
+  </url>
+</urlset>

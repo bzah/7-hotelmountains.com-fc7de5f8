@@ -27,7 +27,14 @@ RewriteRule ^xmlrpc\.php    - [G,L]
 RewriteRule ^wp-json        - [G,L]
 RewriteRule ^wp-cron\.php   - [G,L]
 
+# --- Serve sitemap XML files with correct MIME type ---
+<IfModule mod_mime.c>
+  AddType application/xml .xml
+  AddType text/xsl .xsl
+</IfModule>
+
 # --- SPA Fallback: serve index.html for all non-file routes ---
+# (XML/XSL real files are matched by !-f and skipped, so they serve directly.)
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^ /index.html [L]
