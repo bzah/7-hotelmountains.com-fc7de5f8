@@ -450,6 +450,91 @@ const DestinationPage = () => {
             ))}
           </ul>
         </section>
+
+        {/* Internal Links: Related Blog Articles */}
+        {(() => {
+          const firstWord = destination.name.toLowerCase().split(" ")[0];
+          const relatedPosts = blogArticles
+            .filter(
+              (a) =>
+                a.category.toLowerCase().includes(firstWord) ||
+                a.title.toLowerCase().includes(firstWord) ||
+                a.metaDescription.toLowerCase().includes(firstWord)
+            )
+            .slice(0, 3);
+          const posts = relatedPosts.length > 0 ? relatedPosts : blogArticles.slice(0, 3);
+          return (
+            <section className="mt-14">
+              <h2 className="font-heading text-2xl font-bold text-foreground mb-2 flex items-center gap-2">
+                <BookOpen className="h-5 w-5 text-primary" />
+                Related {destination.name} Travel Guides
+              </h2>
+              <p className="text-muted-foreground mb-5 text-sm">
+                Read in-depth articles to plan a smarter trip to {destination.name}.
+              </p>
+              <div className="grid sm:grid-cols-3 gap-4">
+                {posts.map((p) => (
+                  <Link
+                    key={p.slug}
+                    to={`/blog/${p.slug}`}
+                    className="group bg-card border border-border rounded-lg overflow-hidden hover:border-primary/40 hover:shadow-card transition-all"
+                  >
+                    <div className="aspect-[16/9] overflow-hidden">
+                      <img
+                        src={p.image}
+                        alt={p.title}
+                        loading="lazy"
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                    </div>
+                    <div className="p-4">
+                      <span className="text-[10px] font-semibold text-secondary uppercase tracking-wider">
+                        {p.category}
+                      </span>
+                      <h3 className="font-heading text-sm font-bold text-foreground mt-1.5 group-hover:text-primary transition-colors line-clamp-2">
+                        {p.title}
+                      </h3>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </section>
+          );
+        })()}
+
+        {/* Internal Links: More Tours by Category */}
+        <section className="mt-12">
+          <h2 className="font-heading text-2xl font-bold text-foreground mb-2 flex items-center gap-2">
+            <Compass className="h-5 w-5 text-primary" />
+            More {destination.name} Tour Categories
+          </h2>
+          <p className="text-muted-foreground mb-5 text-sm">
+            Explore curated tour types in {destination.name} from our trusted partners.
+          </p>
+          <div className="grid sm:grid-cols-2 gap-3">
+            {[
+              { label: `${destination.name} Hiking & Trekking`, q: `${destination.name} hiking` },
+              { label: `${destination.name} Day Trips`, q: `${destination.name} day trip` },
+              { label: `${destination.name} Skiing & Snow`, q: `${destination.name} skiing` },
+              { label: `${destination.name} Photography Tours`, q: `${destination.name} photography` },
+              { label: `${destination.name} Cable Cars & Scenic Rides`, q: `${destination.name} cable car` },
+              { label: `${destination.name} Family Activities`, q: `${destination.name} family` },
+            ].map((t) => (
+              <a
+                key={t.label}
+                href={`https://www.getyourguide.com/s/?q=${encodeURIComponent(t.q)}&partner_id=0IQTGX8&utm_medium=online_publisher`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-between bg-card border border-border rounded-lg p-4 hover:border-primary/40 hover:shadow-card transition-all group"
+              >
+                <span className="font-semibold text-foreground group-hover:text-primary transition-colors text-sm">
+                  {t.label}
+                </span>
+                <ExternalLink className="h-4 w-4 text-muted-foreground group-hover:text-primary transition-colors" />
+              </a>
+            ))}
+          </div>
+        </section>
       </main>
 
       {/* Other destinations */}
