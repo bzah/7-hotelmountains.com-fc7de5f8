@@ -19,6 +19,7 @@ import MountainHotels from "./pages/MountainHotels.tsx";
 import HikingTours from "./pages/HikingTours.tsx";
 import SkiTrips from "./pages/SkiTrips.tsx";
 import NotFound from "./pages/NotFound.tsx";
+import RouteTracker from "./components/RouteTracker.tsx";
 
 const queryClient = new QueryClient();
 
@@ -28,6 +29,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <RouteTracker />
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/blog" element={<Blog />} />
