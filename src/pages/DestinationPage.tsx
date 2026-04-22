@@ -62,6 +62,7 @@ const upsertCanonical = (href: string) => {
 
 const DestinationPage = () => {
   const { slug } = useParams<{ slug: string }>();
+  const { t } = useTranslation();
   const destination = destinations.find((d) => d.slug === slug);
 
   useEffect(() => {
@@ -285,12 +286,14 @@ const DestinationPage = () => {
 
       <main className="container mx-auto max-w-4xl px-4 py-12">
         {/* Intro */}
-        <p className="text-lg text-muted-foreground leading-relaxed mb-12">
-          {destination.intro}
-        </p>
+        <section id="overview" className="scroll-mt-24">
+          <p className="text-lg text-muted-foreground leading-relaxed mb-12">
+            {destination.intro}
+          </p>
+        </section>
 
         {/* Highlights */}
-        <div className="grid sm:grid-cols-2 gap-5 mb-14">
+        <section id="highlights" className="scroll-mt-24 grid sm:grid-cols-2 gap-5 mb-14">
           {destination.highlights.map((h) => (
             <div
               key={h.title}
