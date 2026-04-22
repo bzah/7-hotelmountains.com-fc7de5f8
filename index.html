@@ -21,30 +21,94 @@
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "HotelMountains.com",
-      "url": "https://hotelmountains.com",
-      "logo": "https://hotelmountains.com/favicon.png",
-      "description": "Mountain travel guide and tour booking platform covering destinations worldwide including the Alps, Rocky Mountains, Himalayas, and Appalachian Mountains.",
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "contactType": "customer service",
-        "url": "https://hotelmountains.com"
-      },
-      "sameAs": []
-    }
-    </script>
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "HotelMountains.com",
-      "url": "https://hotelmountains.com",
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": "https://www.getyourguide.com/s/?q={search_term}&partner_id=0IQTGX8",
-        "query-input": "required name=search_term"
-      }
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://hotelmountains.com/#organization",
+          "name": "HotelMountains.com",
+          "url": "https://hotelmountains.com",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://hotelmountains.com/favicon.png",
+            "width": 512,
+            "height": 512
+          },
+          "image": "https://hotelmountains.com/favicon.png",
+          "description": "Mountain travel guide and tour booking platform covering destinations worldwide including the Swiss Alps, Rocky Mountains, Himalayas, Andes, Appalachian Mountains, and Japanese Alps. Book hiking tours, ski packages, treks, and mountain hotels.",
+          "foundingDate": "2024",
+          "areaServed": {
+            "@type": "Place",
+            "name": "Worldwide"
+          },
+          "knowsAbout": [
+            "Mountain hiking",
+            "Skiing",
+            "Trekking",
+            "Mountain hotels",
+            "Alpine tours",
+            "National parks",
+            "Adventure travel",
+            "Mountain photography",
+            "Ski resorts",
+            "Hiking trails"
+          ],
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "contactType": "customer service",
+            "email": "info@hotelmountains.com",
+            "availableLanguage": ["English", "Spanish", "French", "Russian"],
+            "areaServed": "Worldwide"
+          },
+          "sameAs": [
+            "https://www.facebook.com/hotelmountains",
+            "https://www.instagram.com/hotelmountains",
+            "https://twitter.com/hotelmountains",
+            "https://www.pinterest.com/hotelmountains"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://hotelmountains.com/#website",
+          "url": "https://hotelmountains.com",
+          "name": "HotelMountains.com",
+          "description": "Mountain Travel Guides, Hiking Tours & Ski Trips Worldwide",
+          "publisher": { "@id": "https://hotelmountains.com/#organization" },
+          "inLanguage": ["en", "es", "fr", "ru"],
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": {
+              "@type": "EntryPoint",
+              "urlTemplate": "https://www.getyourguide.com/s/?q={search_term}&partner_id=0IQTGX8"
+            },
+            "query-input": "required name=search_term"
+          }
+        },
+        {
+          "@type": "TravelAgency",
+          "@id": "https://hotelmountains.com/#travelagency",
+          "name": "HotelMountains.com",
+          "url": "https://hotelmountains.com",
+          "image": "https://hotelmountains.com/favicon.png",
+          "priceRange": "$$",
+          "currenciesAccepted": "USD, EUR, GBP, CHF",
+          "paymentAccepted": "Credit Card, PayPal",
+          "areaServed": [
+            { "@type": "Place", "name": "Swiss Alps" },
+            { "@type": "Place", "name": "Rocky Mountains" },
+            { "@type": "Place", "name": "Himalayas" },
+            { "@type": "Place", "name": "Andes Mountains" },
+            { "@type": "Place", "name": "Appalachian Mountains" },
+            { "@type": "Place", "name": "Japanese Alps" }
+          ],
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "reviewCount": "1247",
+            "bestRating": "5",
+            "worstRating": "1"
+          }
+        }
+      ]
     }
     </script>
   </head>

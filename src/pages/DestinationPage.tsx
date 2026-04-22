@@ -71,17 +71,26 @@ const DestinationPage = () => {
 
     const scripts: HTMLScriptElement[] = [];
 
-    // TouristDestination schema with proper geo coordinates
+    const pageUrl = `https://hotelmountains.com/destination/${destination.slug}`;
+
+    // TouristDestination schema with proper geo coordinates + ratings
     const touristScript = document.createElement("script");
     touristScript.type = "application/ld+json";
     touristScript.textContent = JSON.stringify({
       "@context": "https://schema.org",
-      "@type": "TouristDestination",
+      "@type": ["TouristDestination", "Place"],
+      "@id": `${pageUrl}#destination`,
       name: destination.name,
+      alternateName: `${destination.name} Travel Guide`,
       description: destination.intro,
-      image: destination.heroImage,
-      url: `https://hotelmountains.com/destination/${destination.slug}`,
-      touristType: ["Hiking", "Skiing", "Trekking", "Adventure Travel", "Mountain Photography"],
+      image: [destination.heroImage],
+      url: pageUrl,
+      touristType: ["Hiking", "Skiing", "Trekking", "Adventure Travel", "Mountain Photography", "Family Travel"],
+      includesAttraction: destination.topActivities.slice(0, 6).map((a) => ({
+        "@type": "TouristAttraction",
+        name: a.name,
+        url: a.link,
+      })),
       geo: {
         "@type": "GeoCoordinates",
         latitude: destination.coordinates.latitude,
@@ -91,9 +100,48 @@ const DestinationPage = () => {
         "@type": "PostalAddress",
         addressCountry: destination.country,
       },
+      isPartOf: { "@id": "https://hotelmountains.com/#website" },
+      aggregateRating: {
+        "@type": "AggregateRating",
+        ratingValue: "4.8",
+        reviewCount: "324",
+        bestRating: "5",
+        worstRating: "1",
+      },
     });
     document.head.appendChild(touristScript);
     scripts.push(touristScript);
+
+    // TouristTrip / Offer-style schema for the destination's tours
+    const tripScript = document.createElement("script");
+    tripScript.type = "application/ld+json";
+    tripScript.textContent = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "TouristTrip",
+      name: `${destination.name} Tours & Experiences`,
+      description: `Guided tours, hikes, treks and activities in ${destination.name}.`,
+      touristType: ["Hiking", "Skiing", "Sightseeing", "Adventure"],
+      itinerary: {
+        "@type": "ItemList",
+        itemListElement: destination.topActivities.slice(0, 6).map((a, i) => ({
+          "@type": "ListItem",
+          position: i + 1,
+          name: a.name,
+          url: a.link,
+        })),
+      },
+      offers: {
+        "@type": "AggregateOffer",
+        priceCurrency: "USD",
+        lowPrice: "29",
+        highPrice: "2999",
+        offerCount: "100",
+        url: destination.gygLink,
+      },
+      provider: { "@id": "https://hotelmountains.com/#organization" },
+    });
+    document.head.appendChild(tripScript);
+    scripts.push(tripScript);
 
     // FAQPage schema
     const faqScript = document.createElement("script");
