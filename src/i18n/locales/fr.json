@@ -1,0 +1,44 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "destinations": "Destinations",
+    "activities": "Activités",
+    "tours": "Excursions",
+    "flights": "Vols",
+    "hotels": "Hôtels",
+    "blog": "Blog",
+    "guide": "Guide de Voyage",
+    "bookNow": "Réserver",
+    "language": "Langue",
+    "toggleMenu": "Ouvrir le menu"
+  },
+  "hero": {
+    "title": "Aventures en Montagne",
+    "subtitle": "Explorez les plus grands sommets et sentiers du monde",
+    "description": "Découvrez des destinations de montagne à couper le souffle dans le monde entier — des Alpes suisses aux Appalaches, des Rocheuses aux expéditions de l'Himalaya. Votre prochain sommet vous attend.",
+    "ctaDestinations": "Meilleures Destinations",
+    "ctaTours": "Trouver des Excursions"
+  },
+  "footer": {
+    "tagline": "Votre guide ultime pour les voyages en montagne à travers le monde. Découvrez des sommets, sentiers et aventures sur tous les continents.",
+    "destinations": "Destinations",
+    "company": "Entreprise",
+    "activities": "Activités",
+    "legal": "Légal",
+    "about": "À Propos",
+    "contact": "Contact",
+    "blog": "Blog",
+    "privacy": "Politique de Confidentialité",
+    "terms": "Conditions d'Utilisation",
+    "cookies": "Politique des Cookies",
+    "dmca": "DMCA",
+    "legalNotice": "Mentions Légales",
+    "parents": "Infos Parents",
+    "rights": "Tous droits réservés",
+    "disclosure": "Excursions proposées par GetYourGuide. Nous pouvons percevoir une commission sans frais supplémentaires pour vous.",
+    "actHiking": "Randonnée en Montagne",
+    "actSkiing": "Ski",
+    "actPhoto": "Tours Photographiques",
+    "actGuided": "Expéditions Guidées"
+  }
+}

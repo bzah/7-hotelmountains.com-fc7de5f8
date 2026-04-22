@@ -1,0 +1,44 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "destinations": "Destinos",
+    "activities": "Actividades",
+    "tours": "Tours",
+    "flights": "Vuelos",
+    "hotels": "Hoteles",
+    "blog": "Blog",
+    "guide": "Guía de Viaje",
+    "bookNow": "Reservar",
+    "language": "Idioma",
+    "toggleMenu": "Abrir menú"
+  },
+  "hero": {
+    "title": "Aventuras de Montaña",
+    "subtitle": "Explora las cumbres y senderos más grandes del mundo",
+    "description": "Descubre destinos de montaña impresionantes en todo el mundo — desde los Alpes Suizos hasta los Apalaches, los senderos de las Rocosas y las expediciones al Himalaya. Tu próxima cumbre te espera.",
+    "ctaDestinations": "Mejores Destinos",
+    "ctaTours": "Buscar Tours"
+  },
+  "footer": {
+    "tagline": "Tu guía definitiva para viajes de montaña en todo el mundo. Descubre picos, rutas y aventuras en cada continente.",
+    "destinations": "Destinos",
+    "company": "Empresa",
+    "activities": "Actividades",
+    "legal": "Legal",
+    "about": "Sobre Nosotros",
+    "contact": "Contacto",
+    "blog": "Blog",
+    "privacy": "Política de Privacidad",
+    "terms": "Términos de Servicio",
+    "cookies": "Política de Cookies",
+    "dmca": "DMCA",
+    "legalNotice": "Aviso Legal",
+    "parents": "Información para Padres",
+    "rights": "Todos los derechos reservados",
+    "disclosure": "Tours ofrecidos por GetYourGuide. Podemos recibir una comisión sin coste adicional para ti.",
+    "actHiking": "Senderismo de Montaña",
+    "actSkiing": "Esquí",
+    "actPhoto": "Tours Fotográficos",
+    "actGuided": "Expediciones Guiadas"
+  }
+}
