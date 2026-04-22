@@ -1,10 +1,11 @@
 import { useEffect } from "react";
 import { useParams, Navigate, Link } from "react-router-dom";
 import { destinations } from "@/data/destinations";
+import { blogArticles } from "@/data/blogArticles";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import HotelSearchWidget from "@/components/HotelSearchWidget";
-import { MapPin, Calendar, ArrowLeft, ExternalLink, Mountain, Star } from "lucide-react";
+import { MapPin, Calendar, ArrowLeft, ExternalLink, Mountain, Star, BookOpen, Compass } from "lucide-react";
 
 const DestinationToursWidget = ({ query }: { query: string }) => {
   useEffect(() => {
