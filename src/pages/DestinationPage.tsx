@@ -345,44 +345,48 @@ const DestinationPage = () => {
         </div>
 
         {/* Hotel Search */}
-        <div className="mb-14">
+        <section id="hotels" className="scroll-mt-24 mb-14">
           <h2 className="font-heading text-2xl font-bold text-foreground mb-5">
             {destination.name} Hotels & Accommodation
           </h2>
           <HotelSearchWidget defaultDestination={destination.name} compact />
-        </div>
+        </section>
         {/* Top Activities links */}
-        <h2 className="font-heading text-2xl font-bold text-foreground mb-5">
-          Top {destination.name} Activities
-        </h2>
-        <div className="grid sm:grid-cols-2 gap-4 mb-14">
-          {destination.topActivities.map((activity) => (
-            <a
-              key={activity.name}
-              href={activity.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-between bg-card border border-border rounded-lg p-4 hover:shadow-elevated hover:border-primary/30 transition-all group"
-            >
-              <div className="flex items-center gap-3">
-                <Mountain className="h-5 w-5 text-primary" />
-                <span className="font-semibold text-foreground group-hover:text-primary transition-colors">
-                  {activity.name}
-                </span>
-              </div>
-              <ExternalLink className="h-4 w-4 text-muted-foreground group-hover:text-primary transition-colors" />
-            </a>
-          ))}
-        </div>
+        <section id="activities" className="scroll-mt-24">
+          <h2 className="font-heading text-2xl font-bold text-foreground mb-5">
+            Top {destination.name} Activities
+          </h2>
+          <div className="grid sm:grid-cols-2 gap-4 mb-14">
+            {destination.topActivities.map((activity) => (
+              <a
+                key={activity.name}
+                href={activity.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-between bg-card border border-border rounded-lg p-4 hover:shadow-elevated hover:border-primary/30 transition-all group"
+              >
+                <div className="flex items-center gap-3">
+                  <Mountain className="h-5 w-5 text-primary" />
+                  <span className="font-semibold text-foreground group-hover:text-primary transition-colors">
+                    {activity.name}
+                  </span>
+                </div>
+                <ExternalLink className="h-4 w-4 text-muted-foreground group-hover:text-primary transition-colors" />
+              </a>
+            ))}
+          </div>
+        </section>
 
         {/* GYG Widget */}
-        <h2 className="font-heading text-2xl font-bold text-foreground mb-2">
-          Book {destination.name} Tours
-        </h2>
-        <p className="text-muted-foreground mb-6">
-          Browse and book verified tours, activities, and experiences.
-        </p>
-        <DestinationToursWidget query={destination.gygQuery} />
+        <section id="tours" className="scroll-mt-24">
+          <h2 className="font-heading text-2xl font-bold text-foreground mb-2">
+            Book {destination.name} Tours
+          </h2>
+          <p className="text-muted-foreground mb-6">
+            Browse and book verified tours, activities, and experiences.
+          </p>
+          <DestinationToursWidget query={destination.gygQuery} />
+        </section>
 
         {/* Browse all link */}
         <div className="text-center mt-10">
@@ -397,7 +401,7 @@ const DestinationPage = () => {
           </a>
         </div>
         {/* FAQ Section */}
-        <div className="mt-14 mb-14">
+        <section id="faq" className="scroll-mt-24 mt-14 mb-14">
           <h2 className="font-heading text-2xl font-bold text-foreground mb-6">
             Frequently Asked Questions About {destination.name}
           </h2>
@@ -417,7 +421,7 @@ const DestinationPage = () => {
               </details>
             ))}
           </div>
-        </div>
+        </section>
 
         {/* SEO content: Why visit & related searches (long-tail keyword block) */}
         <section className="mt-14 mb-4 bg-muted/30 rounded-xl p-6 md:p-8 border border-border">
