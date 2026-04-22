@@ -39,10 +39,10 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-foreground py-16">
-      <div className="container mx-auto px-4">
-        <div className="grid md:grid-cols-4 gap-10">
-          <div className="md:col-span-1">
+    <footer className="bg-foreground py-12 md:py-16">
+      <div className="container mx-auto px-5 md:px-6">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-10">
+          <div className="col-span-2 md:col-span-1">
             <div className="flex items-center gap-2 mb-4">
               <Mountain className="h-6 w-6 text-primary" />
               <span className="font-heading text-lg font-bold text-background">

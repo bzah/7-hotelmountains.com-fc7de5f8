@@ -19,22 +19,22 @@ const ToursWidget = () => {
   }, []);
 
   return (
-    <section id="tours" className="py-24 bg-background">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <p className="text-secondary font-semibold text-sm uppercase tracking-wider mb-3">
+    <section id="tours" className="py-14 md:py-24 bg-background">
+      <div className="container mx-auto px-5 md:px-6">
+        <div className="text-center mb-10 md:mb-16">
+          <p className="text-secondary font-semibold text-xs sm:text-sm uppercase tracking-wider mb-3">
             Book Adventures
           </p>
-          <h2 className="font-heading text-4xl md:text-5xl font-bold text-foreground mb-4">
+          <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4">
             Popular Mountain Tours
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
+          <p className="text-muted-foreground max-w-2xl mx-auto text-base md:text-lg">
             Book verified mountain tours, hiking excursions, and adventure experiences worldwide.
             Trusted reviews. Best price guaranteed.
           </p>
         </div>
 
-        <div className="max-w-5xl mx-auto">
+        <div className="max-w-5xl mx-auto overflow-hidden">
           <div
             data-gyg-href="https://widget.getyourguide.com/default/activities.frame"
             data-gyg-locale-code="en-US"

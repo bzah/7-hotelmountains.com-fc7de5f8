@@ -87,23 +87,23 @@ const HotelSearchWidget = ({ defaultDestination = "", compact = false }: HotelSe
   }
 
   return (
-    <section id="hotels" className="py-20 bg-muted/40">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <span className="text-secondary font-semibold text-sm uppercase tracking-widest">
+    <section id="hotels" className="py-14 md:py-20 bg-muted/40">
+      <div className="container mx-auto px-5 md:px-6">
+        <div className="text-center mb-10 md:mb-12">
+          <span className="text-secondary font-semibold text-xs sm:text-sm uppercase tracking-widest">
             Mountain Accommodations
           </span>
-          <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground mt-3 mb-4">
+          <h2 className="font-heading text-3xl sm:text-4xl font-bold text-foreground mt-3 mb-4">
             Find Your Perfect Mountain Hotel
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-muted-foreground max-w-2xl mx-auto text-base md:text-lg">
             From cozy alpine chalets to luxury mountain resorts — compare prices and book the best
             accommodation for your next mountain adventure.
           </p>
         </div>
 
         {/* Search Form */}
-        <div className="max-w-4xl mx-auto bg-card border border-border rounded-2xl p-6 md:p-8 shadow-elevated">
+        <div className="max-w-4xl mx-auto bg-card border border-border rounded-2xl p-5 sm:p-6 md:p-8 shadow-elevated">
           <div className="grid md:grid-cols-4 gap-4 mb-4">
             <div className="md:col-span-2">
               <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1.5 block">
@@ -150,7 +150,7 @@ const HotelSearchWidget = ({ defaultDestination = "", compact = false }: HotelSe
             </div>
           </div>
 
-          <div className="flex flex-col sm:flex-row items-end gap-4">
+          <div className="flex flex-col sm:flex-row sm:items-end gap-3 sm:gap-4">
             <div className="w-full sm:w-auto">
               <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1.5 block">
                 Guests
@@ -160,7 +160,7 @@ const HotelSearchWidget = ({ defaultDestination = "", compact = false }: HotelSe
                 <select
                   value={guests}
                   onChange={(e) => setGuests(e.target.value)}
-                  className="pl-10 pr-8 py-3 rounded-lg bg-background border border-border text-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 transition-all appearance-none"
+                  className="w-full sm:w-auto pl-10 pr-8 py-3 rounded-lg bg-background border border-border text-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 transition-all appearance-none"
                 >
                   <option value="1">1 Guest</option>
                   <option value="2">2 Guests</option>
@@ -194,7 +194,7 @@ const HotelSearchWidget = ({ defaultDestination = "", compact = false }: HotelSe
                 onClick={() => {
                   setDestination(dest.query);
                 }}
-                className="text-xs bg-card border border-border px-3 py-1.5 rounded-full text-muted-foreground hover:text-primary hover:border-primary/30 transition-all"
+                className="text-xs sm:text-sm bg-card border border-border px-3 py-2 min-h-[36px] rounded-full text-muted-foreground hover:text-primary hover:border-primary/30 transition-all"
               >
                 {dest.label}
               </button>

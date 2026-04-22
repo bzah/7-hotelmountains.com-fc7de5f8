@@ -29,45 +29,45 @@ const faqs = [
 
 const MountainGuide = () => {
   return (
-    <section id="guide" className="py-24 bg-muted/50">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <p className="text-secondary font-semibold text-sm uppercase tracking-wider mb-3">
+    <section id="guide" className="py-14 md:py-24 bg-muted/50">
+      <div className="container mx-auto px-5 md:px-6">
+        <div className="text-center mb-10 md:mb-16">
+          <p className="text-secondary font-semibold text-xs sm:text-sm uppercase tracking-wider mb-3">
             Travel Guide
           </p>
-          <h2 className="font-heading text-4xl md:text-5xl font-bold text-foreground mb-4">
+          <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4">
             Mountain Travel FAQ
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
+          <p className="text-muted-foreground max-w-2xl mx-auto text-base md:text-lg">
             Everything you need to know about mountain destinations, from peak heights to the best times to visit.
           </p>
         </div>
 
-        <div className="max-w-3xl mx-auto space-y-6">
+        <div className="max-w-3xl mx-auto space-y-4 md:space-y-6">
           {faqs.map((faq) => (
             <details
               key={faq.question}
               className="group bg-background rounded-xl border border-border shadow-card"
             >
-              <summary className="flex items-center justify-between cursor-pointer p-6 font-heading text-lg font-semibold text-foreground hover:text-primary transition-colors list-none">
-                {faq.question}
-                <span className="text-muted-foreground group-open:rotate-45 transition-transform text-2xl ml-4">
+              <summary className="flex items-start justify-between gap-4 cursor-pointer p-5 sm:p-6 font-heading text-base sm:text-lg font-semibold text-foreground hover:text-primary transition-colors list-none">
+                <span className="flex-1">{faq.question}</span>
+                <span className="text-muted-foreground group-open:rotate-45 transition-transform text-2xl leading-none shrink-0">
                   +
                 </span>
               </summary>
-              <div className="px-6 pb-6 text-muted-foreground leading-relaxed">
+              <div className="px-5 sm:px-6 pb-5 sm:pb-6 text-sm sm:text-base text-muted-foreground leading-relaxed">
                 {faq.answer}
               </div>
             </details>
           ))}
         </div>
 
-        <div className="text-center mt-12">
+        <div className="text-center mt-10 md:mt-12">
           <a
             href={`https://www.getyourguide.com/s/?q=mountain+tours&${PARTNER}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block bg-primary text-primary-foreground px-8 py-3.5 rounded-lg font-semibold hover:opacity-90 transition-opacity"
+            className="inline-block bg-primary text-primary-foreground px-6 sm:px-8 py-3.5 rounded-lg font-semibold hover:opacity-90 transition-opacity"
           >
             Browse All Mountain Tours →
           </a>
