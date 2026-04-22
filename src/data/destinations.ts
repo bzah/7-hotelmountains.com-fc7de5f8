@@ -390,3 +390,22 @@ const rawDestinations: Destination[] = [
     ]
   }
 ];
+
+const HIGHLIGHT_CITY: Record<string, string> = {
+  "swiss-alps": "Zermatt",
+  "rocky-mountains": "Banff",
+  "appalachian-mountains": "Asheville",
+  "himalayas": "Kathmandu",
+  "andes-mountains": "Cusco",
+  "japanese-alps": "Takayama",
+};
+
+export const destinations: Destination[] = rawDestinations.map((d) => ({
+  ...d,
+  seoContent: buildSeoContent(
+    d.name,
+    d.country,
+    d.relatedKeywords,
+    HIGHLIGHT_CITY[d.slug] ?? d.name
+  ),
+}));
