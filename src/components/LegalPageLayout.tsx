@@ -39,7 +39,7 @@ const LegalPageLayout = ({ title, metaTitle, metaDescription, children, jsonLd }
     return () => {
       if (script) document.head.removeChild(script);
     };
-  }, [metaTitle, metaDescription, jsonLd]);
+  }, [metaTitle, metaDescription, jsonLd, pathname]);
 
   return (
     <div className="min-h-screen">
