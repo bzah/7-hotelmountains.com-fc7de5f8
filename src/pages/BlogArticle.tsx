@@ -1,14 +1,17 @@
 import { useEffect } from "react";
 import { useParams, Link, Navigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { blogArticles } from "@/data/blogArticles";
 import { destinations } from "@/data/destinations";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import Breadcrumbs from "@/components/Breadcrumbs";
 import { ArrowLeft, Clock, Calendar, MapPin, Mountain, ExternalLink, Compass } from "lucide-react";
 import { upsertHreflangAlternates } from "@/lib/seo";
 
 const BlogArticle = () => {
   const { slug } = useParams<{ slug: string }>();
+  const { t } = useTranslation();
   const article = blogArticles.find((a) => a.slug === slug);
 
   useEffect(() => {
@@ -77,23 +80,10 @@ const BlogArticle = () => {
       });
       document.head.appendChild(article_script);
 
-      // BreadcrumbList
-      const breadcrumb = document.createElement("script");
-      breadcrumb.type = "application/ld+json";
-      breadcrumb.textContent = JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "BreadcrumbList",
-        itemListElement: [
-          { "@type": "ListItem", position: 1, name: "Home", item: "https://hotelmountains.com/" },
-          { "@type": "ListItem", position: 2, name: "Blog", item: "https://hotelmountains.com/blog" },
-          { "@type": "ListItem", position: 3, name: article.title, item: url },
-        ],
-      });
-      document.head.appendChild(breadcrumb);
+      // BreadcrumbList JSON-LD now emitted by <Breadcrumbs /> in the visible UI.
 
       return () => {
         if (article_script.parentNode) article_script.parentNode.removeChild(article_script);
-        if (breadcrumb.parentNode) breadcrumb.parentNode.removeChild(breadcrumb);
       };
     }
   }, [article]);
