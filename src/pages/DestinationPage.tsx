@@ -36,60 +36,103 @@ const DestinationToursWidget = ({ query }: { query: string }) => {
   );
 };
 
+const upsertMeta = (name: string, content: string) => {
+  let meta = document.querySelector(`meta[name="${name}"]`);
+  if (!meta) {
+    meta = document.createElement("meta");
+    meta.setAttribute("name", name);
+    document.head.appendChild(meta);
+  }
+  meta.setAttribute("content", content);
+};
+
+const upsertCanonical = (href: string) => {
+  let link = document.querySelector('link[rel="canonical"]') as HTMLLinkElement | null;
+  if (!link) {
+    link = document.createElement("link");
+    link.rel = "canonical";
+    document.head.appendChild(link);
+  }
+  link.href = href;
+};
+
 const DestinationPage = () => {
   const { slug } = useParams<{ slug: string }>();
   const destination = destinations.find((d) => d.slug === slug);
 
   useEffect(() => {
-    if (destination) {
-      document.title = destination.metaTitle;
-      const meta = document.querySelector('meta[name="description"]');
-      if (meta) {
-        meta.setAttribute("content", destination.metaDescription);
-      } else {
-        const m = document.createElement("meta");
-        m.name = "description";
-        m.content = destination.metaDescription;
-        document.head.appendChild(m);
-      }
-      window.scrollTo(0, 0);
+    if (!destination) return;
 
-      // TouristDestination schema
-      const script = document.createElement("script");
-      script.type = "application/ld+json";
-      script.textContent = JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "TouristDestination",
-        name: destination.name,
-        description: destination.intro,
-        image: destination.heroImage,
-        touristType: ["Hiking", "Skiing", "Adventure Travel"],
-        geo: { "@type": "GeoCoordinates" },
-      });
-      document.head.appendChild(script);
+    document.title = destination.metaTitle;
+    upsertMeta("description", destination.metaDescription);
+    upsertMeta("keywords", destination.relatedKeywords.join(", "));
+    upsertCanonical(`https://hotelmountains.com/destination/${destination.slug}`);
+    window.scrollTo(0, 0);
 
-      // FAQPage schema
-      const faqScript = document.createElement("script");
-      faqScript.type = "application/ld+json";
-      faqScript.textContent = JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        mainEntity: destination.faq.map((f) => ({
-          "@type": "Question",
-          name: f.question,
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: f.answer,
-          },
-        })),
-      });
-      document.head.appendChild(faqScript);
+    const scripts: HTMLScriptElement[] = [];
 
-      return () => {
-        document.head.removeChild(script);
-        document.head.removeChild(faqScript);
-      };
-    }
+    // TouristDestination schema with proper geo coordinates
+    const touristScript = document.createElement("script");
+    touristScript.type = "application/ld+json";
+    touristScript.textContent = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "TouristDestination",
+      name: destination.name,
+      description: destination.intro,
+      image: destination.heroImage,
+      url: `https://hotelmountains.com/destination/${destination.slug}`,
+      touristType: ["Hiking", "Skiing", "Trekking", "Adventure Travel", "Mountain Photography"],
+      geo: {
+        "@type": "GeoCoordinates",
+        latitude: destination.coordinates.latitude,
+        longitude: destination.coordinates.longitude,
+      },
+      address: {
+        "@type": "PostalAddress",
+        addressCountry: destination.country,
+      },
+    });
+    document.head.appendChild(touristScript);
+    scripts.push(touristScript);
+
+    // FAQPage schema
+    const faqScript = document.createElement("script");
+    faqScript.type = "application/ld+json";
+    faqScript.textContent = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: destination.faq.map((f) => ({
+        "@type": "Question",
+        name: f.question,
+        acceptedAnswer: { "@type": "Answer", text: f.answer },
+      })),
+    });
+    document.head.appendChild(faqScript);
+    scripts.push(faqScript);
+
+    // BreadcrumbList schema
+    const breadcrumbScript = document.createElement("script");
+    breadcrumbScript.type = "application/ld+json";
+    breadcrumbScript.textContent = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: "https://hotelmountains.com/" },
+        { "@type": "ListItem", position: 2, name: "Destinations", item: "https://hotelmountains.com/#destinations" },
+        {
+          "@type": "ListItem",
+          position: 3,
+          name: destination.name,
+          item: `https://hotelmountains.com/destination/${destination.slug}`,
+        },
+      ],
+    });
+    document.head.appendChild(breadcrumbScript);
+    scripts.push(breadcrumbScript);
+
+    return () => {
+      scripts.forEach((s) => s.parentNode && s.parentNode.removeChild(s));
+    };
   }, [destination]);
 
   if (!destination) return <Navigate to="/" replace />;
