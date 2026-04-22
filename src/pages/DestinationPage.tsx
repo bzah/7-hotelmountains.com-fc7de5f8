@@ -7,6 +7,8 @@ import Footer from "@/components/Footer";
 import HotelSearchWidget from "@/components/HotelSearchWidget";
 import { MapPin, Calendar, ArrowLeft, ExternalLink, Mountain, Star, BookOpen, Compass } from "lucide-react";
 import { upsertHreflangAlternates } from "@/lib/seo";
+import Breadcrumbs from "@/components/Breadcrumbs";
+import { useTranslation } from "react-i18next";
 
 const DestinationToursWidget = ({ query }: { query: string }) => {
   useEffect(() => {
@@ -217,25 +219,9 @@ const DestinationPage = () => {
     document.head.appendChild(faqScript);
     scripts.push(faqScript);
 
-    // BreadcrumbList schema
-    const breadcrumbScript = document.createElement("script");
-    breadcrumbScript.type = "application/ld+json";
-    breadcrumbScript.textContent = JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: "https://hotelmountains.com/" },
-        { "@type": "ListItem", position: 2, name: "Destinations", item: "https://hotelmountains.com/#destinations" },
-        {
-          "@type": "ListItem",
-          position: 3,
-          name: destination.name,
-          item: `https://hotelmountains.com/destination/${destination.slug}`,
-        },
-      ],
-    });
-    document.head.appendChild(breadcrumbScript);
-    scripts.push(breadcrumbScript);
+    // BreadcrumbList JSON-LD now emitted by <Breadcrumbs /> in the visible UI.
+
+
 
     return () => {
       scripts.forEach((s) => s.parentNode && s.parentNode.removeChild(s));
