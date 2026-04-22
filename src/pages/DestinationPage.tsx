@@ -308,6 +308,43 @@ const DestinationPage = () => {
             ))}
           </div>
         </div>
+
+        {/* SEO content: Why visit & related searches (long-tail keyword block) */}
+        <section className="mt-14 mb-4 bg-muted/30 rounded-xl p-6 md:p-8 border border-border">
+          <h2 className="font-heading text-2xl font-bold text-foreground mb-4">
+            Why Visit {destination.name}
+          </h2>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            {destination.name} is one of the world's most rewarding mountain travel destinations,
+            offering a rare combination of dramatic alpine scenery, world-class hiking and trekking
+            routes, established mountain hotels and lodges, and authentic local culture. Whether
+            you're planning a first guided day hike, a multi-day trek, a ski trip, a scenic train
+            journey or a photography tour, {destination.name} delivers experiences that scale from
+            beginner-friendly to expert-level alpine adventures.
+          </p>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Travelers searching for the best things to do in {destination.name} typically combine
+            a guided tour or trek with a stay in a mountain hotel or village base. The pages and
+            tours on HotelMountains.com cover when to visit {destination.name}, how to get there,
+            how much to budget, what to pack for the local weather, where to find the most
+            memorable viewpoints, and which day trips and multi-day itineraries make the best use
+            of your time.
+          </p>
+
+          <h3 className="font-heading text-lg font-bold text-foreground mt-6 mb-3">
+            Popular searches related to {destination.name}
+          </h3>
+          <ul className="flex flex-wrap gap-2">
+            {destination.relatedKeywords.map((kw) => (
+              <li
+                key={kw}
+                className="text-xs px-3 py-1.5 rounded-full bg-card border border-border text-muted-foreground"
+              >
+                {kw}
+              </li>
+            ))}
+          </ul>
+        </section>
       </main>
 
       {/* Other destinations */}
