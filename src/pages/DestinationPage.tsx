@@ -310,9 +310,7 @@ const DestinationPage = () => {
               </div>
             </div>
           ))}
-        </div>
-
-        {/* Content sections */}
+        </section>
         {destination.sections.map((section) => (
           <div key={section.heading} className="mb-12">
             <h2 className="font-heading text-2xl font-bold text-foreground mb-5">
