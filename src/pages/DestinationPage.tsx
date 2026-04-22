@@ -7,6 +7,7 @@ import Footer from "@/components/Footer";
 import HotelSearchWidget from "@/components/HotelSearchWidget";
 import { MapPin, Calendar, ArrowLeft, ExternalLink, Mountain, Star, BookOpen, Compass } from "lucide-react";
 import { upsertHreflangAlternates } from "@/lib/seo";
+import { buildKeywordWeights, rankByRelevance } from "@/lib/relevance";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import FilterChips from "@/components/FilterChips";
 import { useTranslation } from "react-i18next";
@@ -475,17 +476,25 @@ const DestinationPage = () => {
           </ul>
         </section>
 
-        {/* Internal Links: Related Blog Articles */}
+        {/* Internal Links: Related Blog Articles (ranked by tag/keyword overlap) */}
         {(() => {
-          const firstWord = destination.name.toLowerCase().split(" ")[0];
-          const relatedPosts = blogArticles
-            .filter(
-              (a) =>
-                a.category.toLowerCase().includes(firstWord) ||
-                a.title.toLowerCase().includes(firstWord) ||
-                a.metaDescription.toLowerCase().includes(firstWord)
-            )
-            .slice(0, 3);
+          const destKeywords = buildKeywordWeights([
+            { source: destination.relatedKeywords, weight: 3 },
+            { source: destination.name, weight: 2 },
+            { source: destination.country, weight: 2 },
+          ]);
+          const relatedPosts = rankByRelevance(
+            destKeywords,
+            blogArticles,
+            (a) =>
+              buildKeywordWeights([
+                { source: a.tags, weight: 3 },
+                { source: a.category, weight: 2 },
+                { source: a.title, weight: 1 },
+                { source: a.metaDescription, weight: 1 },
+              ]),
+            { limit: 3, fallback: blogArticles }
+          );
           const posts = relatedPosts.length > 0 ? relatedPosts : blogArticles.slice(0, 3);
           return (
             <section className="mt-14">

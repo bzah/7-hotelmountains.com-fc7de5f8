@@ -5,6 +5,8 @@ export interface BlogArticle {
   metaDescription: string;
   excerpt: string;
   category: string;
+  /** Topical tags used to compute related-content matches (mountain ranges, regions, activities, themes). */
+  tags: string[];
   readTime: string;
   date: string;
   image: string;
@@ -19,6 +21,7 @@ export const blogArticles: BlogArticle[] = [
     metaDescription: "Discover the best time to visit Rocky Mountain National Park. Our seasonal guide covers weather, crowds, wildlife, and activities for every month of the year.",
     excerpt: "From wildflower-filled meadows in summer to snow-dusted peaks in winter, each season offers a unique experience at Rocky Mountain National Park. Here's exactly when to plan your trip.",
     category: "Rocky Mountains",
+    tags: ["rocky mountains", "rocky mountain national park", "colorado", "usa", "national park", "hiking", "wildlife", "elk", "trail ridge road", "bear lake", "seasonal guide", "wildflowers", "snowshoeing"],
     readTime: "8 min read",
     date: "2026-03-28",
     image: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&q=80",
@@ -48,6 +51,7 @@ export const blogArticles: BlogArticle[] = [
     metaDescription: "Complete beginner's guide to hiking the Appalachian Trail. Learn about gear, best sections, preparation tips, and how to plan your first AT adventure.",
     excerpt: "The Appalachian Trail stretches 2,190 miles from Georgia to Maine. Whether you're dreaming of a thru-hike or a weekend section hike, here's everything beginners need to know.",
     category: "Appalachian Mountains",
+    tags: ["appalachian mountains", "appalachian trail", "thru-hike", "section hike", "georgia", "maine", "virginia", "shenandoah", "great smoky mountains", "usa", "hiking", "backpacking", "trekking", "gear", "leave no trace"],
     readTime: "10 min read",
     date: "2026-03-20",
     image: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&q=80",
@@ -82,6 +86,7 @@ export const blogArticles: BlogArticle[] = [
     metaDescription: "Explore the best hiking trails in the Swiss Alps from easy lakeside walks to challenging summit routes. Complete guide with difficulty ratings, distances, and tips.",
     excerpt: "From the iconic Eiger Trail to gentle lakeside walks in Interlaken, the Swiss Alps offer world-class hiking for every ability. Here are 10 trails that showcase the best of Switzerland.",
     category: "Swiss Alps",
+    tags: ["swiss alps", "switzerland", "europe", "hiking", "alpine", "matterhorn", "zermatt", "interlaken", "grindelwald", "lauterbrunnen", "eiger", "jungfrau", "saas-fee", "tour du mont blanc", "haute route", "trails"],
     readTime: "7 min read",
     date: "2026-03-15",
     image: "https://images.unsplash.com/photo-1531366936337-7c912a4589a7?w=800&q=80",
@@ -111,6 +116,7 @@ export const blogArticles: BlogArticle[] = [
     metaDescription: "Plan your first Himalayan trek in Nepal. Compare Everest Base Camp, Annapurna Circuit, and Langtang Valley treks with costs, difficulty, and preparation tips.",
     excerpt: "Nepal is the ultimate trekking destination, home to eight of the world's fourteen 8,000-meter peaks. Here's how first-time trekkers can experience the Himalayas safely and affordably.",
     category: "Himalayas",
+    tags: ["himalayas", "nepal", "tibet", "trekking", "everest", "everest base camp", "annapurna", "langtang", "kathmandu", "altitude sickness", "tea house", "asia", "high altitude", "thorong la"],
     readTime: "9 min read",
     date: "2026-03-10",
     image: "https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99?w=800&q=80",
@@ -138,6 +144,7 @@ export const blogArticles: BlogArticle[] = [
     metaDescription: "Complete guide to the Mountain Time Zone (MT). Learn which US states and cities use Mountain Time, the UTC offset, and how daylight saving time affects it.",
     excerpt: "Whether you're scheduling a meeting or planning a road trip, understanding the Mountain Time Zone is essential. Here's everything you need to know about MT, MST, and MDT.",
     category: "Travel Tips",
+    tags: ["mountain time", "time zone", "mst", "mdt", "travel tips", "usa", "colorado", "montana", "utah", "wyoming", "arizona", "new mexico", "rocky mountains", "denver", "planning"],
     readTime: "5 min read",
     date: "2026-03-05",
     image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80",
@@ -166,6 +173,7 @@ export const blogArticles: BlogArticle[] = [
     metaDescription: "Plan the perfect Blue Ridge Mountains weekend trip. 3-day itinerary covering Asheville, Blue Ridge Parkway, hiking trails, waterfalls, and local breweries.",
     excerpt: "The Blue Ridge Mountains offer one of the East Coast's most rewarding weekend escapes. From scenic drives along the Blue Ridge Parkway to waterfall hikes and craft breweries in Asheville.",
     category: "Appalachian Mountains",
+    tags: ["appalachian mountains", "blue ridge mountains", "blue ridge parkway", "asheville", "north carolina", "usa", "weekend getaway", "itinerary", "waterfalls", "biltmore", "hiking", "scenic drive", "fall foliage", "east coast"],
     readTime: "6 min read",
     date: "2026-02-28",
     image: "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=800&q=80",

@@ -9,6 +9,7 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import FilterChips from "@/components/FilterChips";
 import { ArrowLeft, Clock, Calendar, MapPin, Mountain, ExternalLink, Compass } from "lucide-react";
 import { upsertHreflangAlternates } from "@/lib/seo";
+import { buildKeywordWeights, rankByRelevance } from "@/lib/relevance";
 
 const BlogArticle = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -105,20 +106,39 @@ const BlogArticle = () => {
     ? otherArticles.filter((a) => a.category === otherCategory)
     : otherArticles.slice(0, 6);
 
-  const relatedArticles = blogArticles
-    .filter((a) => a.slug !== slug)
-    .slice(0, 3);
+  // Topical fingerprint of the current article (tags weighted highest).
+  const articleKeywords = buildKeywordWeights([
+    { source: article!.tags, weight: 3 },
+    { source: article!.category, weight: 2 },
+    { source: article!.title, weight: 1 },
+    { source: article!.metaDescription, weight: 1 },
+  ]);
 
-  // Match destinations whose first-word name appears in the article category or title
-  const relatedDestinations = destinations
-    .filter((d) => {
-      const key = d.name.toLowerCase().split(" ")[0];
-      return (
-        article!.category.toLowerCase().includes(key) ||
-        article!.title.toLowerCase().includes(key)
-      );
-    })
-    .slice(0, 3);
+  // Related articles ranked by tag/category overlap (not just "first 3").
+  const relatedArticles = rankByRelevance(
+    articleKeywords,
+    blogArticles.filter((a) => a.slug !== slug),
+    (a) =>
+      buildKeywordWeights([
+        { source: a.tags, weight: 3 },
+        { source: a.category, weight: 2 },
+        { source: a.title, weight: 1 },
+      ]),
+    { limit: 3, fallback: blogArticles.filter((a) => a.slug !== slug) }
+  );
+
+  // Related destinations ranked by overlap of article tags with destination keywords.
+  const relatedDestinations = rankByRelevance(
+    articleKeywords,
+    destinations,
+    (d) =>
+      buildKeywordWeights([
+        { source: d.relatedKeywords, weight: 3 },
+        { source: d.name, weight: 2 },
+        { source: d.country, weight: 2 },
+      ]),
+    { limit: 3, fallback: destinations }
+  );
 
   const destinationLinks =
     relatedDestinations.length > 0 ? relatedDestinations : destinations.slice(0, 3);
