@@ -40,5 +40,19 @@
     "actSkiing": "Лыжи",
     "actPhoto": "Фототуры",
     "actGuided": "Гид-экспедиции"
+  },
+  "breadcrumb": {
+    "home": "Главная",
+    "destinations": "Направления",
+    "blog": "Блог",
+    "article": "Статья",
+    "overview": "Обзор",
+    "highlights": "Основное",
+    "activities": "Активности",
+    "hotels": "Отели",
+    "tours": "Туры",
+    "faq": "Часто задаваемые вопросы",
+    "relatedGuides": "Похожие гиды",
+    "relatedDestinations": "Похожие направления"
   }
 }

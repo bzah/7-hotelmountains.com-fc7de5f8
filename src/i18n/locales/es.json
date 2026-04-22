@@ -40,5 +40,19 @@
     "actSkiing": "Esquí",
     "actPhoto": "Tours Fotográficos",
     "actGuided": "Expediciones Guiadas"
+  },
+  "breadcrumb": {
+    "home": "Inicio",
+    "destinations": "Destinos",
+    "blog": "Blog",
+    "article": "Artículo",
+    "overview": "Resumen",
+    "highlights": "Destacados",
+    "activities": "Actividades",
+    "hotels": "Hoteles",
+    "tours": "Tours",
+    "faq": "Preguntas frecuentes",
+    "relatedGuides": "Guías relacionadas",
+    "relatedDestinations": "Destinos relacionados"
   }
 }

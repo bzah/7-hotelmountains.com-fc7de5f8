@@ -1,14 +1,17 @@
 import { useEffect } from "react";
 import { useParams, Link, Navigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { blogArticles } from "@/data/blogArticles";
 import { destinations } from "@/data/destinations";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import Breadcrumbs from "@/components/Breadcrumbs";
 import { ArrowLeft, Clock, Calendar, MapPin, Mountain, ExternalLink, Compass } from "lucide-react";
 import { upsertHreflangAlternates } from "@/lib/seo";
 
 const BlogArticle = () => {
   const { slug } = useParams<{ slug: string }>();
+  const { t } = useTranslation();
   const article = blogArticles.find((a) => a.slug === slug);
 
   useEffect(() => {
@@ -77,23 +80,10 @@ const BlogArticle = () => {
       });
       document.head.appendChild(article_script);
 
-      // BreadcrumbList
-      const breadcrumb = document.createElement("script");
-      breadcrumb.type = "application/ld+json";
-      breadcrumb.textContent = JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "BreadcrumbList",
-        itemListElement: [
-          { "@type": "ListItem", position: 1, name: "Home", item: "https://hotelmountains.com/" },
-          { "@type": "ListItem", position: 2, name: "Blog", item: "https://hotelmountains.com/blog" },
-          { "@type": "ListItem", position: 3, name: article.title, item: url },
-        ],
-      });
-      document.head.appendChild(breadcrumb);
+      // BreadcrumbList JSON-LD now emitted by <Breadcrumbs /> in the visible UI.
 
       return () => {
         if (article_script.parentNode) article_script.parentNode.removeChild(article_script);
-        if (breadcrumb.parentNode) breadcrumb.parentNode.removeChild(breadcrumb);
       };
     }
   }, [article]);
@@ -125,10 +115,24 @@ const BlogArticle = () => {
     { label: `${article!.category} Photography Tours`, q: `${article!.category} photography` },
   ];
 
+  const blogUrl = `https://hotelmountains.com/blog/${article.slug}`;
+  const breadcrumbItems = [
+    { label: t("breadcrumb.home"), to: "/" },
+    { label: t("breadcrumb.blog"), to: "/blog" },
+    { label: article.title },
+  ];
+  const sectionLinks = [
+    { label: t("breadcrumb.article"), hash: "#article" },
+    { label: t("breadcrumb.relatedDestinations"), hash: "#related-destinations" },
+    { label: t("breadcrumb.tours"), hash: "#more-tours" },
+    { label: t("breadcrumb.relatedGuides"), hash: "#related-guides" },
+  ];
+
   return (
     <div className="min-h-screen">
       <Navbar />
-      <main className="pt-20">
+      <Breadcrumbs items={breadcrumbItems} sections={sectionLinks} pageUrl={blogUrl} />
+      <main className="pt-4">
         {/* Hero */}
         <div className="relative h-[50vh] min-h-[400px]">
           <img
@@ -164,7 +168,7 @@ const BlogArticle = () => {
         </div>
 
         {/* Content */}
-        <article className="container mx-auto max-w-3xl px-4 py-12">
+        <article id="article" className="container mx-auto max-w-3xl px-4 py-12 scroll-mt-24">
           <div className="prose prose-lg max-w-none">
             {article.content.map((block, i) => {
               if (block.startsWith("## ")) {
@@ -205,7 +209,7 @@ const BlogArticle = () => {
           </div>
 
           {/* Internal Links: Related Destinations */}
-          <section className="mt-12">
+          <section id="related-destinations" className="mt-12 scroll-mt-24">
             <h2 className="font-heading text-2xl font-bold text-foreground mb-2 flex items-center gap-2">
               <Compass className="h-5 w-5 text-primary" />
               Related Mountain Destinations
@@ -233,7 +237,7 @@ const BlogArticle = () => {
           </section>
 
           {/* Internal Links: More Tours */}
-          <section className="mt-10">
+          <section id="more-tours" className="mt-10 scroll-mt-24">
             <h2 className="font-heading text-2xl font-bold text-foreground mb-2 flex items-center gap-2">
               <Mountain className="h-5 w-5 text-primary" />
               More {article.category} Tours
@@ -270,7 +274,7 @@ const BlogArticle = () => {
         </article>
 
         {/* Related */}
-        <section className="bg-muted/40 py-16">
+        <section id="related-guides" className="bg-muted/40 py-16 scroll-mt-24">
           <div className="container mx-auto px-4">
             <h2 className="font-heading text-2xl font-bold text-foreground text-center mb-10">
               More Mountain Guides

@@ -7,6 +7,8 @@ import Footer from "@/components/Footer";
 import HotelSearchWidget from "@/components/HotelSearchWidget";
 import { MapPin, Calendar, ArrowLeft, ExternalLink, Mountain, Star, BookOpen, Compass } from "lucide-react";
 import { upsertHreflangAlternates } from "@/lib/seo";
+import Breadcrumbs from "@/components/Breadcrumbs";
+import { useTranslation } from "react-i18next";
 
 const DestinationToursWidget = ({ query }: { query: string }) => {
   useEffect(() => {
@@ -60,6 +62,7 @@ const upsertCanonical = (href: string) => {
 
 const DestinationPage = () => {
   const { slug } = useParams<{ slug: string }>();
+  const { t } = useTranslation();
   const destination = destinations.find((d) => d.slug === slug);
 
   useEffect(() => {
@@ -217,25 +220,9 @@ const DestinationPage = () => {
     document.head.appendChild(faqScript);
     scripts.push(faqScript);
 
-    // BreadcrumbList schema
-    const breadcrumbScript = document.createElement("script");
-    breadcrumbScript.type = "application/ld+json";
-    breadcrumbScript.textContent = JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: "https://hotelmountains.com/" },
-        { "@type": "ListItem", position: 2, name: "Destinations", item: "https://hotelmountains.com/#destinations" },
-        {
-          "@type": "ListItem",
-          position: 3,
-          name: destination.name,
-          item: `https://hotelmountains.com/destination/${destination.slug}`,
-        },
-      ],
-    });
-    document.head.appendChild(breadcrumbScript);
-    scripts.push(breadcrumbScript);
+    // BreadcrumbList JSON-LD now emitted by <Breadcrumbs /> in the visible UI.
+
+
 
     return () => {
       scripts.forEach((s) => s.parentNode && s.parentNode.removeChild(s));
@@ -244,9 +231,25 @@ const DestinationPage = () => {
 
   if (!destination) return <Navigate to="/" replace />;
 
+  const pageUrl = `https://hotelmountains.com/destination/${destination.slug}`;
+  const breadcrumbItems = [
+    { label: t("breadcrumb.home"), to: "/" },
+    { label: t("breadcrumb.destinations"), to: "/#destinations" },
+    { label: destination.name },
+  ];
+  const sectionLinks = [
+    { label: t("breadcrumb.overview"), hash: "#overview" },
+    { label: t("breadcrumb.highlights"), hash: "#highlights" },
+    { label: t("breadcrumb.activities"), hash: "#activities" },
+    { label: t("breadcrumb.hotels"), hash: "#hotels" },
+    { label: t("breadcrumb.tours"), hash: "#tours" },
+    { label: t("breadcrumb.faq"), hash: "#faq" },
+  ];
+
   return (
     <div className="min-h-screen">
       <Navbar />
+      <Breadcrumbs items={breadcrumbItems} sections={sectionLinks} pageUrl={pageUrl} />
 
       {/* Hero */}
       <div className="relative h-[55vh] min-h-[420px]">
@@ -283,12 +286,14 @@ const DestinationPage = () => {
 
       <main className="container mx-auto max-w-4xl px-4 py-12">
         {/* Intro */}
-        <p className="text-lg text-muted-foreground leading-relaxed mb-12">
-          {destination.intro}
-        </p>
+        <section id="overview" className="scroll-mt-24">
+          <p className="text-lg text-muted-foreground leading-relaxed mb-12">
+            {destination.intro}
+          </p>
+        </section>
 
         {/* Highlights */}
-        <div className="grid sm:grid-cols-2 gap-5 mb-14">
+        <section id="highlights" className="scroll-mt-24 grid sm:grid-cols-2 gap-5 mb-14">
           {destination.highlights.map((h) => (
             <div
               key={h.title}
@@ -305,9 +310,7 @@ const DestinationPage = () => {
               </div>
             </div>
           ))}
-        </div>
-
-        {/* Content sections */}
+        </section>
         {destination.sections.map((section) => (
           <div key={section.heading} className="mb-12">
             <h2 className="font-heading text-2xl font-bold text-foreground mb-5">
@@ -342,44 +345,48 @@ const DestinationPage = () => {
         </div>
 
         {/* Hotel Search */}
-        <div className="mb-14">
+        <section id="hotels" className="scroll-mt-24 mb-14">
           <h2 className="font-heading text-2xl font-bold text-foreground mb-5">
             {destination.name} Hotels & Accommodation
           </h2>
           <HotelSearchWidget defaultDestination={destination.name} compact />
-        </div>
+        </section>
         {/* Top Activities links */}
-        <h2 className="font-heading text-2xl font-bold text-foreground mb-5">
-          Top {destination.name} Activities
-        </h2>
-        <div className="grid sm:grid-cols-2 gap-4 mb-14">
-          {destination.topActivities.map((activity) => (
-            <a
-              key={activity.name}
-              href={activity.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-between bg-card border border-border rounded-lg p-4 hover:shadow-elevated hover:border-primary/30 transition-all group"
-            >
-              <div className="flex items-center gap-3">
-                <Mountain className="h-5 w-5 text-primary" />
-                <span className="font-semibold text-foreground group-hover:text-primary transition-colors">
-                  {activity.name}
-                </span>
-              </div>
-              <ExternalLink className="h-4 w-4 text-muted-foreground group-hover:text-primary transition-colors" />
-            </a>
-          ))}
-        </div>
+        <section id="activities" className="scroll-mt-24">
+          <h2 className="font-heading text-2xl font-bold text-foreground mb-5">
+            Top {destination.name} Activities
+          </h2>
+          <div className="grid sm:grid-cols-2 gap-4 mb-14">
+            {destination.topActivities.map((activity) => (
+              <a
+                key={activity.name}
+                href={activity.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-between bg-card border border-border rounded-lg p-4 hover:shadow-elevated hover:border-primary/30 transition-all group"
+              >
+                <div className="flex items-center gap-3">
+                  <Mountain className="h-5 w-5 text-primary" />
+                  <span className="font-semibold text-foreground group-hover:text-primary transition-colors">
+                    {activity.name}
+                  </span>
+                </div>
+                <ExternalLink className="h-4 w-4 text-muted-foreground group-hover:text-primary transition-colors" />
+              </a>
+            ))}
+          </div>
+        </section>
 
         {/* GYG Widget */}
-        <h2 className="font-heading text-2xl font-bold text-foreground mb-2">
-          Book {destination.name} Tours
-        </h2>
-        <p className="text-muted-foreground mb-6">
-          Browse and book verified tours, activities, and experiences.
-        </p>
-        <DestinationToursWidget query={destination.gygQuery} />
+        <section id="tours" className="scroll-mt-24">
+          <h2 className="font-heading text-2xl font-bold text-foreground mb-2">
+            Book {destination.name} Tours
+          </h2>
+          <p className="text-muted-foreground mb-6">
+            Browse and book verified tours, activities, and experiences.
+          </p>
+          <DestinationToursWidget query={destination.gygQuery} />
+        </section>
 
         {/* Browse all link */}
         <div className="text-center mt-10">
@@ -394,7 +401,7 @@ const DestinationPage = () => {
           </a>
         </div>
         {/* FAQ Section */}
-        <div className="mt-14 mb-14">
+        <section id="faq" className="scroll-mt-24 mt-14 mb-14">
           <h2 className="font-heading text-2xl font-bold text-foreground mb-6">
             Frequently Asked Questions About {destination.name}
           </h2>
@@ -414,7 +421,7 @@ const DestinationPage = () => {
               </details>
             ))}
           </div>
-        </div>
+        </section>
 
         {/* SEO content: Why visit & related searches (long-tail keyword block) */}
         <section className="mt-14 mb-4 bg-muted/30 rounded-xl p-6 md:p-8 border border-border">
