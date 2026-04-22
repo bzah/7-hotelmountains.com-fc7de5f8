@@ -5,6 +5,8 @@ export interface BlogArticle {
   metaDescription: string;
   excerpt: string;
   category: string;
+  /** Topical tags used to compute related-content matches (mountain ranges, regions, activities, themes). */
+  tags: string[];
   readTime: string;
   date: string;
   image: string;
