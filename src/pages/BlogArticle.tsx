@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useParams, Link, Navigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { blogArticles } from "@/data/blogArticles";
@@ -6,6 +6,7 @@ import { destinations } from "@/data/destinations";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import FilterChips from "@/components/FilterChips";
 import { ArrowLeft, Clock, Calendar, MapPin, Mountain, ExternalLink, Compass } from "lucide-react";
 import { upsertHreflangAlternates } from "@/lib/seo";
 

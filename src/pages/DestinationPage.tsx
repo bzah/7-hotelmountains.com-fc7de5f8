@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useParams, Navigate, Link } from "react-router-dom";
 import { destinations } from "@/data/destinations";
 import { blogArticles } from "@/data/blogArticles";
@@ -8,6 +8,7 @@ import HotelSearchWidget from "@/components/HotelSearchWidget";
 import { MapPin, Calendar, ArrowLeft, ExternalLink, Mountain, Star, BookOpen, Compass } from "lucide-react";
 import { upsertHreflangAlternates } from "@/lib/seo";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import FilterChips from "@/components/FilterChips";
 import { useTranslation } from "react-i18next";
 
 const DestinationToursWidget = ({ query }: { query: string }) => {
