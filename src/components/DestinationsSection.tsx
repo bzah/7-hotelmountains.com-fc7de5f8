@@ -1,8 +1,30 @@
+import { useMemo, useState } from "react";
 import { MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { destinations } from "@/data/destinations";
+import FilterChips from "@/components/FilterChips";
 
 const DestinationsSection = () => {
+  const { t } = useTranslation();
+  const [country, setCountry] = useState<string | null>(null);
+
+  const countries = useMemo(
+    () => Array.from(new Set(destinations.map((d) => d.country))).sort(),
+    []
+  );
+  const countMap = useMemo(() => {
+    const m: Record<string, number> = {};
+    destinations.forEach((d) => {
+      m[d.country] = (m[d.country] || 0) + 1;
+    });
+    return m;
+  }, []);
+  const filtered = useMemo(
+    () => (country ? destinations.filter((d) => d.country === country) : destinations),
+    [country]
+  );
+
   return (
     <section id="destinations" className="py-14 md:py-24 bg-background">
       <div className="container mx-auto px-5 md:px-6">
@@ -19,8 +41,23 @@ const DestinationsSection = () => {
           </p>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 md:gap-8">
-          {destinations.map((dest) => (
+        <div className="mb-8 md:mb-10 flex justify-center">
+          <FilterChips
+            label={t("filters.filterByCountry")}
+            options={countries}
+            value={country}
+            onChange={setCountry}
+            countMap={countMap}
+          />
+        </div>
+
+        {filtered.length === 0 ? (
+          <p className="text-center text-muted-foreground py-12">
+            {t("filters.noResults")}
+          </p>
+        ) : (
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 md:gap-8">
+            {filtered.map((dest) => (
             <Link
               key={dest.slug}
               to={`/destination/${dest.slug}`}
@@ -55,8 +92,9 @@ const DestinationsSection = () => {
                 </span>
               </div>
             </Link>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );
