@@ -206,10 +206,12 @@ async function buildRuntimeBlocks() {
       author: {
         "@type": "Organization",
         name: "HotelMountains.com Editorial Team",
+        url: "https://hotelmountains.com/about",
       },
       publisher: {
         "@type": "Organization",
         name: "HotelMountains.com",
+        url: "https://hotelmountains.com",
         logo: {
           "@type": "ImageObject",
           url: "https://hotelmountains.com/favicon.png",
