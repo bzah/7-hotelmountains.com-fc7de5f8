@@ -30,6 +30,7 @@ const BlogArticle = () => {
         document.head.appendChild(canonical);
       }
       canonical.href = url;
+      upsertHreflangAlternates(url);
 
       // Article schema (rich result eligible)
       const article_script = document.createElement("script");
