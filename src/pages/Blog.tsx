@@ -42,6 +42,25 @@ const upsertMeta = (name: string, content: string) => {
 };
 
 const Blog = () => {
+  const { t } = useTranslation();
+  const [category, setCategory] = useState<string | null>(null);
+
+  const categories = useMemo(
+    () => Array.from(new Set(blogArticles.map((a) => a.category))).sort(),
+    []
+  );
+  const countMap = useMemo(() => {
+    const m: Record<string, number> = {};
+    blogArticles.forEach((a) => {
+      m[a.category] = (m[a.category] || 0) + 1;
+    });
+    return m;
+  }, []);
+  const filtered = useMemo(
+    () => (category ? blogArticles.filter((a) => a.category === category) : blogArticles),
+    [category]
+  );
+
   useEffect(() => {
     document.title = META_TITLE;
     upsertMeta("description", META_DESCRIPTION);
